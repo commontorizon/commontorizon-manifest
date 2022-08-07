@@ -10,6 +10,7 @@
   <remote alias="repo" fetch="https://github.com/microhobby" name="mbc"/>
   <remote alias="repo" fetch="https://github.com/foundriesio" name="fio"/>
 
+  <project name="meta-intel" path="layers/meta-intel" remote="yocto" revision="ef3aa3064b9bbfa19f600eafb1e7d3473f62af74"/>
   <project name="meta-lmp" path="layers/meta-lmp" remote="fio" revision="5721038b981f7d7f7b33823e0ee5128d8e490da2"/>
   <project name="meta-security" path="layers/meta-security" remote="yocto" revision="d3d8e62bf1caa3870a504c0addcfd200b33c189f"/>
   <project name="meta-updater" path="layers/meta-updater" remote="uptane" revision="03fc4eb32bccc43f6aa386408dad30205efa5b8e"/>
