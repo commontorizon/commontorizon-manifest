@@ -13,7 +13,7 @@
 
   <project name="meta-riscv" path="layers/meta-riscv" remote="mbc" revision="c741832bc3208b030723565ef5323da67d0e41b6"/>
   <project name="meta-intel" path="layers/meta-intel" remote="yocto" revision="01ad1a73aaab49d377d14bad8a7dec48f86cba83"/>
-  <project name="meta-lmp" path="layers/meta-lmp" remote="fio" revision="c5a3a5711a8d1e194c0b7c53f0d48faa7085b27a"/>
+  <project name="meta-lmp" path="layers/meta-lmp" remote="fio" revision="de2cf0a57e592be32a59acf12fd9ecad519e9ee2"/>
   <project name="meta-security" path="layers/meta-security" remote="yocto" revision="c79262a30bd385f5dbb009ef8704a1a01644528e"/>
   <project name="meta-updater" path="layers/meta-updater" remote="uptane" revision="03fc4eb32bccc43f6aa386408dad30205efa5b8e"/>
   <project name="meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="e11d5b630e6b5626b58b742b80f5bdf277a44168"/>
