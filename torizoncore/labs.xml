@@ -12,13 +12,13 @@
   <remote alias="repo" fetch="https://github.com/riscv" name="rcv"/>
 
   <project name="meta-riscv" path="layers/meta-riscv" remote="mbc" revision="c741832bc3208b030723565ef5323da67d0e41b6"/>
-  <project name="meta-intel" path="layers/meta-intel" remote="yocto" revision="ef3aa3064b9bbfa19f600eafb1e7d3473f62af74"/>
-  <project name="meta-lmp" path="layers/meta-lmp" remote="fio" revision="5721038b981f7d7f7b33823e0ee5128d8e490da2"/>
-  <project name="meta-security" path="layers/meta-security" remote="yocto" revision="d3d8e62bf1caa3870a504c0addcfd200b33c189f"/>
+  <project name="meta-intel" path="layers/meta-intel" remote="yocto" revision="01ad1a73aaab49d377d14bad8a7dec48f86cba83"/>
+  <project name="meta-lmp" path="layers/meta-lmp" remote="fio" revision="c5a3a5711a8d1e194c0b7c53f0d48faa7085b27a"/>
+  <project name="meta-security" path="layers/meta-security" remote="yocto" revision="c79262a30bd385f5dbb009ef8704a1a01644528e"/>
   <project name="meta-updater" path="layers/meta-updater" remote="uptane" revision="03fc4eb32bccc43f6aa386408dad30205efa5b8e"/>
-  <project name="meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="33fb354402b8875602a5746c1ad58528c8757c47"/>
-  <project name="meta-toradex-distro.git" path="layers/meta-toradex-distro" remote="tdx" revision="f4057a174e2f20df54320cf1ad9a5f4317ad599d"/>
-  <project name="meta-toradex-torizon" path="layers/meta-toradex-torizon" remote="mbc" revision="c6e68b15655d7e97df1b41d21618c4fe8b32b474">
+  <project name="meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="e11d5b630e6b5626b58b742b80f5bdf277a44168"/>
+  <project name="meta-toradex-distro.git" path="layers/meta-toradex-distro" remote="tdx" revision="095032507d6560ff6bb916982732a2190019b97f"/>
+  <project name="meta-toradex-torizon" path="layers/meta-toradex-torizon" remote="mbc" revision="f6c4629cb6e212b4ec32b7bdeca834e33f35f2b1">
     <linkfile dest="setup-environment" src="scripts/setup-environment"/>
   </project>
 </manifest>
