@@ -1,0 +1,4 @@
+{
+    "machine": "raspberrypi4-64",
+    "image": "torizon-core-docker"
+}
