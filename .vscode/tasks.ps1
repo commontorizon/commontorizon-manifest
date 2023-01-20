@@ -1,24 +1,32 @@
+# suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSAvoidOverwritingBuiltInCmdlets',
-    Justification = 'We need to overwrite the write-error to exit properly when used'
+    'PSAvoidOverwritingBuiltInCmdlets', ""
 )]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSAvoidUsingWriteHost',
-    Justification = 'For Windows e Linux its working'
+    'PSAvoidUsingWriteHost', ""
 )]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSAvoidUsingInvokeExpression',
-    Justification = 'We need to use them for execute the tasks commands'
+    'PSAvoidUsingInvokeExpression', ""
 )]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSAvoidUsingPositionalParameters',
-    Justification = 'TODO: we need to work on this'
+    'PSAvoidUsingPositionalParameters', ""
 )]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSAvoidGlobalVars',
-    Justification = 'We need to use global for the workspaceFolder'
+    'PSAvoidGlobalVars', ""
 )]
 param()
+
+# settings
+$_overrideEnv = $true;
+$_debug = $false;
+
+if ($env:TASKS_DEBUG -eq $true) {
+    $_debug = $true;
+}
+
+if ($env:TASKS_OVERRIDE_ENV -eq $false) {
+    $_overrideEnv = $false;
+}
 
 $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
 $settingsFileContent = Get-Content $PSScriptRoot/settings.json
@@ -137,6 +145,106 @@ function checkInput () {
     return $ret
 }
 
+# TODO: refactor to be an generic prefix check
+function checkTorizonInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${command:torizon_")) {
+
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:torizon_).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:torizon_${matchValue}}", 
+                    "`${config:torizon_${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function checkDockerInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${command:docker_")) {
+
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:docker_).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:docker_${matchValue}}", 
+                    "`${config:docker_${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function checkTCBInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${command:tcb")) {
+
+            if ($item.Contains("tcb.getNextPackageVersion")) {
+                $_next =  (
+                    ./.conf/torizonIO.ps1 `
+                        target latest version ${global:config:tcb.packageName}
+                )
+                $_next++
+
+                if ($_debug) {
+                    Write-Host -ForegroundColor Green `
+                        "Next package version: $_next"
+                }
+
+                $item = $item.Replace(
+                    "`${command:tcb.getNextPackageVersion}", 
+                    "$_next"
+                )
+            }
+
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:tcb.).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:tcb.${matchValue}}", 
+                    "`${config:tcb.${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkConfig ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -144,6 +252,27 @@ function checkConfig ([System.Collections.ArrayList] $list) {
         # TODO: Add variable expand recursive
         if ($item.Contains("config:")) {
             $item = $item.Replace("config:", "global:config:")
+
+            $value = Invoke-Expression "echo $item"
+
+            if ($value.Contains("`${workspaceFolder")) {
+                $item = $value
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function checkWorkspaceFolder ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        # TODO: Add variable expand recursive
+        if ($item.Contains("workspaceFolder")) {
+            $item = $item.Replace("workspaceFolder", "global:workspaceFolder")
 
             $value = Invoke-Expression "echo $item"
 
@@ -185,12 +314,42 @@ function descTask () {
     }
 }
 
+function _parseEnvs () {
+    $env = $args[0]
+    $task = $args[1]
+
+    $value = $task.options.env
+                | Select-Object -ExpandProperty $env
+
+    $expValue = checkWorkspaceFolder($value)
+    $expValue = checkTorizonInputs($expValue)
+    $expValue = checkDockerInputs($expValue)
+    $expValue = checkTCBInputs($expValue)
+    $expValue  = checkInput($expValue)
+    $expValue = checkConfig($expValue)
+    $expValue = $expValue.ToString()
+    $_env = Invoke-Expression "echo `"$expValue`""
+
+    if ($_debug -eq $true) {
+        Write-Host -ForegroundColor Yellow `
+            "Env: $env=$expValue"
+        Write-Host -ForegroundColor Yellow `
+            "Parsed Env: $env=$_env"
+    }
+
+    return $_env
+}
+
 function runTask () {
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($json.tasks[$i].label -eq $args[0]) {
             $task = $json.tasks[$i]
             $taskCmd = $task.command
-            $taskArgs = checkInput($task.args)
+            $taskArgs = checkWorkspaceFolder($task.args)
+            $taskArgs = checkTorizonInputs($taskArgs)
+            $taskArgs = checkDockerInputs($taskArgs)
+            $taskArgs = checkTCBInputs($taskArgs)
+            $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
@@ -203,17 +362,22 @@ function runTask () {
                     | Select-Object -ExpandProperty Name
 
                 foreach ($env in $envs) {
-                    $value = $task.options.env
-                                | Select-Object -ExpandProperty $env
-
-                    Write-Host -ForegroundColor Yellow `
-                        "Env: $env=$value"
-
-                    $expValue = checkConfig(checkInput($value)).ToString()
-
-                    [System.Environment]::SetEnvironmentVariable(
-                        $env, $expValue
-                    )
+                    if ($_overrideEnv) {
+                        $_env = _parseEnvs $env $task
+                        [System.Environment]::SetEnvironmentVariable(
+                            $env, $_env
+                        )
+                    } else {
+                        if (
+                            $null -eq 
+                            [System.Environment]::GetEnvironmentVariable($env)
+                        ) {
+                            $_env = _parseEnvs $env $task
+                            [System.Environment]::SetEnvironmentVariable(
+                                $env, $_env
+                            )
+                        }
+                    }
                 }
             }
 
@@ -229,17 +393,33 @@ function runTask () {
 
             # we need to change dir if we are setting cwd
             if ($null -ne $taskCwd) {
-                Set-Location $taskCwd
+                # we use invoke-expression because this way it expand the
+                # variables automatically
+                Invoke-Expression "Set-Location $taskCwd"
+            }
+
+            # parse the variables
+            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
+            
+            if ($env:TASKS_DEBUG -eq $true) {
+                Write-Host -ForegroundColor Yellow `
+                    "Command: $taskCmd"
+                Write-Host -ForegroundColor Yellow `
+                    "Args: $taskArgs"
+                Write-Host -ForegroundColor Yellow `
+                    "Parsed Command: $_cmd"
             }
 
             # execute the task
-            Invoke-Expression "$taskCmd $taskArgs"
+            # use bash as default
+            # TODO: be explicit about bash as default on documentation
+            Invoke-Expression "bash -c `"$_cmd`""
             $exitCode = $LASTEXITCODE
 
             # abort we had a error
             if ($exitCode -ne 0) {
                 Write-Host -ForegroundColor Red `
-                    "> TASK $($json.tasks[$i].label) exited with error code <"
+                    "> TASK $($json.tasks[$i].label) exited with error code $($exitCode) <"
                 exit $exitCode
             }
         }
@@ -257,7 +437,7 @@ function getCliInputs () {
 
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
-$Global:workspaceFolder = Join-Path $PSScriptRoot ../
+$Global:workspaceFolder = Join-Path $PSScriptRoot ..
 settingsToGlobal
 
 switch ($args[0]) {
