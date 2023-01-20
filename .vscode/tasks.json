@@ -59,7 +59,7 @@
                 "-u",
                 "${workspaceFolder}",
                 "-b",
-                "labs-sync",
+                "labs-6.1",
                 "-m",
                 "torizoncore/labs.xml"
             ],
@@ -175,7 +175,7 @@
                 "${workspaceFolder}/../labs/workdir:/workdir",
                 "--workdir=/workdir",
                 "-e",
-                "ACCEPT_FSL_EULA=1",
+                "EULA=1",
                 "-e",
                 "MACHINE=${config:machine}",
                 "-e",
