@@ -85,7 +85,7 @@
             "args": [
                 "sync",
                 "-j",
-                "8"
+                "20"
             ],
             "problemMatcher": [
                 "$gcc"
