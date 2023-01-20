@@ -35,19 +35,19 @@
         name="meta-riscv"
         path="layers/meta-riscv" 
         remote="mbc"
-        revision="c741832bc3208b030723565ef5323da67d0e41b6" />
+        revision="c10957f909fb7233a04699f054493e3ec85da4b1" />
 
     <project 
         name="meta-intel" 
         path="layers/meta-intel" 
         remote="yocto"
-        revision="01ad1a73aaab49d377d14bad8a7dec48f86cba83" />
+        revision="f529e0594a784546926e89ce8e78385e00d0b0a9" />
 
     <project 
         name="meta-lmp" 
         path="layers/meta-lmp" 
         remote="fio"
-        revision="de2cf0a57e592be32a59acf12fd9ecad519e9ee2" />
+        revision="1dbdf3f0870fbab1179265a48a18d0568ad7718c" />
 
     <project 
         name="meta-security" 
@@ -59,25 +59,25 @@
         name="meta-updater" 
         path="layers/meta-updater" 
         remote="uptane"
-        revision="03fc4eb32bccc43f6aa386408dad30205efa5b8e" />
+        revision="ffbbc2b9f46a60bd2d51be53079252f8e6304a8b" />
 
     <project 
         name="meta-virtualization" 
         path="layers/meta-virtualization" 
         remote="yocto"
-        revision="e11d5b630e6b5626b58b742b80f5bdf277a44168" />
+        revision="9a487c1851aa2021cf24f951957e22fd429c8025" />
 
     <project 
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="095032507d6560ff6bb916982732a2190019b97f" />
+        revision="2712e46aadd2ec74711d69503b61dba3548e0aa4" />
 
     <project 
         name="meta-toradex-torizon" 
         path="layers/meta-toradex-torizon" 
         remote="mbc"
-        revision="283092c3733e15f95d376421e87edc469c3c6670">
+        revision="0dc1b23ff3ac8764e50baae74723dcf76fdd5c9e">
 
         <linkfile 
             dest="setup-environment" 
