@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <remote fetch="https://github.com/agherzan/" name="agh"/>
 
-  <project name="meta-raspberrypi" path="layers/meta-raspberrypi" remote="agh" revision="0135a02ea577bd39dd552236ead2c5894d89da1d"/>
+<manifest>
+    <remote 
+        fetch="https://github.com/agherzan/" 
+        name="agh"/>
+
+    <project 
+        name="meta-raspberrypi" 
+        path="layers/meta-raspberrypi" 
+        remote="agh" 
+        revision="dacad9302a92b0b7edf8546cdcad1f8ef753e462"/>
 </manifest>
