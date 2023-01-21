@@ -1,4 +1,13 @@
 {
     "machine": "raspberrypi4-64",
-    "image": "torizon-core-docker"
+    "image": "torizon-core-docker",
+    "window.title": "${folderName}",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#274449",
+        "titleBar.inactiveBackground": "#274449",
+        "[Dark++ Italic]": {
+            "titleBar.activeBackground": "#274449",
+            "titleBar.inactiveBackground": "#274449"
+        }
+    }
 }
