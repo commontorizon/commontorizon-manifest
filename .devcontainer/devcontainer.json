@@ -1,0 +1,40 @@
+{
+    "name": "crops-devcontainer",
+    "dockerFile": "Dockerfile",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "microhobby.linuxkerneldev@0.5.2",
+                "ms-vscode.cpptools",
+                "ms-python.python",
+                "microhobby.bitbake2",
+                "microhobby.taskrunnercodeplus",
+                "eamodio.gitlens"
+            ]
+        }
+    },
+    "containerEnv": {
+        "EULA": "1",
+        "ACCEPT_FSL_EULA": "1",
+        "MACHINE": "raspberrypi4-64",
+        "DISTRO": "torizon-upstream",
+        "IMAGE": "torizon-core-docker",
+        "TDX_DEBUG": "1"
+    },
+    // to attach to the BitBake extension debugger
+    "forwardPorts": [
+        6009
+    ],
+    "otherPortsAttributes": {
+        "onAutoForward": "ignore"
+    },
+    "runArgs": [
+        "--network=host",
+        "--privileged"
+    ],
+    "remoteUser": "usersetup",
+    "mounts": [
+        "source=${localEnv:HOME}/projects/T/labs/workdir,target=/workdir,type=bind",
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
