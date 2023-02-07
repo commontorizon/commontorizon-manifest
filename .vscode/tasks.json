@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build TorizonCore Labs",
+            "label": "Prepare Build TorizonCore Labs",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -19,8 +19,26 @@
             "dependsOn": [
                 "create-build-folder",
                 "repo-init",
-                "repo-sync",
-                "crops-build"
+                "repo-sync"
+            ]
+        },
+        {
+            "label": "Build TorizonCore Labs (devcontainer)",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "OK ✅"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-container"
             ]
         },
         {
@@ -135,6 +153,35 @@
             ]
         },
         {
+            "label": "build-container",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "DISTRO": "${config:distro}",
+                    "TDX_DEBUG": "1"
+                }
+            },
+            "args": [
+                "${config:build_dir}"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "flash-sdcard-rpi4",
             "detail": "",
             "command": "sudo",
@@ -197,6 +244,36 @@
             ]
         },
         {
+            "label": "bitbake-clean-torizonCore-container",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "DISTRO": "${config:distro}",
+                    "CMD": "bitbake -c cleanall ${config:image}"
+                }
+            },
+            "args": [
+                "${config:build_dir}"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "bitbake-cleansstate-torizonCore",
             "detail": "",
             "command": "docker",
@@ -234,6 +311,36 @@
             ]
         },
         {
+            "label": "bitbake-cleansstate-torizonCore-container",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "DISTRO": "${config:distro}",
+                    "CMD": "bitbake world -c cleansstate --continue"
+                }
+            },
+            "args": [
+                "${config:build_dir}"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "crops-bash",
             "detail": "",
             "command": "docker",
@@ -254,6 +361,55 @@
                 "-e",
                 "MACHINE=${config:machine}",
                 "matheuscastello/crops:kirkstone"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "crops-bash-container",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": ""
+                }
+            },
+            "args": [
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "Open Dev WorkSpace Windows",
+            "detail": "",
+            "command": "code",
+            "type": "shell",
+            "args": [
+                "/workdir/torizon/layers",
+                "&&",
+                "code",
+                "/workdir/torizon/${config:build_dir}/tmp/work-shared/${config:machine}/kernel-source"
             ],
             "problemMatcher": [
                 "$gcc"
