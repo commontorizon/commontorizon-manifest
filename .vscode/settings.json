@@ -1,13 +1,11 @@
 {
-    "machine": "raspberrypi4-64",
-    "image": "torizon-core-docker",
     "window.title": "${folderName}",
-    "workbench.colorCustomizations": {
-        "titleBar.activeBackground": "#274449",
-        "titleBar.inactiveBackground": "#274449",
-        "[Dark++ Italic]": {
-            "titleBar.activeBackground": "#274449",
-            "titleBar.inactiveBackground": "#274449"
-        }
-    }
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "bitbake.machine": "raspberrypi4-64",
+    "bitbake.distro": "torizon-upstream",
+    "bitbake.setupScript": "startup-tdx.sh",
+    "machine": "verdin-imx8mm",
+    "image": "torizon-core-docker",
+    "distro": "torizon",
+    "build_dir": "build-torizon"
 }
