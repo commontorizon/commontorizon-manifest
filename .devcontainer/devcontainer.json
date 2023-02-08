@@ -9,7 +9,8 @@
                 "ms-python.python",
                 "microhobby.bitbake2",
                 "microhobby.taskrunnercodeplus",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+                "github.copilot"
             ]
         }
     },
