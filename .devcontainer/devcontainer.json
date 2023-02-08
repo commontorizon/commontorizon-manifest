@@ -4,7 +4,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "microhobby.linuxkerneldev@0.5.2",
+                "microhobby.linuxkerneldev@0.5.3",
                 "ms-vscode.cpptools",
                 "ms-python.python",
                 "microhobby.bitbake2",
