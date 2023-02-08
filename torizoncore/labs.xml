@@ -71,7 +71,7 @@
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="2712e46aadd2ec74711d69503b61dba3548e0aa4" />
+        revision="3d431308f59cd9c7046ea59bb164cb5c490b6f93" />
 
     <project 
         name="meta-toradex-torizon" 
