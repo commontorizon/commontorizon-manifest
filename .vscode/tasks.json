@@ -168,7 +168,14 @@
                 }
             },
             "args": [
-                "${config:build_dir}"
+                "${config:build_dir}",
+                "&&",
+                "echo",
+                "'Yocto build for ${config:distro} ${config:image} ${config:machine} has been finished'",
+                "|",
+                "nc",
+                "${config:notifyAddr}",
+                "${config:notifyPort}"
             ],
             "problemMatcher": [
                 "$gcc"
