@@ -20,7 +20,17 @@ RUN echo \
 
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-    docker-ce docker-ce-cli containerd.io docker-compose-plugin && \
+    htop \
+    netcat \
+    telnet \
+    aarch64-linux-gnu-gcc \
+    gdb-multiarch \
+    libssl-dev \
+    bc \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-compose-plugin && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -28,7 +38,13 @@ RUN apt-get -q -y update && \
 RUN groupadd -f docker && groupmod --non-unique --gid 998 docker && adduser usersetup docker
 
 COPY profile.sh /usr/bin/bitbakes.sh
-RUN chmod +x /usr/bin/bitbakes.sh
+COPY profile.sh /usr/bin/startup-tdx.sh
+
+# for the kgdb serial use
+RUN chmod +x /usr/bin/bitbakes.sh && \
+    chmod +x /usr/bin/startup-tdx.sh && \
+    chsh -s /bin/bash usersetup && \
+    adduser usersetup dialout
 
 USER usersetup
 
