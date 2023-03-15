@@ -4,7 +4,9 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "microhobby.linuxkerneldev@0.5.3",
+                "microhobby.linuxkerneldev@0.5.5",
+                "microhobby.kgdb-debug",
+                "dpkristensen-garmin.udev-rules",
                 "ms-vscode.cpptools",
                 "ms-python.python",
                 "microhobby.bitbake2",
@@ -24,8 +26,7 @@
         "ACCEPT_FSL_EULA": "1",
         "MACHINE": "raspberrypi4-64",
         "DISTRO": "torizon-upstream",
-        "IMAGE": "torizon-core-docker",
-        "TDX_DEBUG": "1"
+        "IMAGE": "torizon-core-docker"
     },
     // to attach to the BitBake extension debugger
     "forwardPorts": [
