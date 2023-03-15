@@ -84,6 +84,12 @@ then
     exec bash -i
 elif [ -z "$CMD" ]
 then
+
+    if [ "$IMAGE" = "torizon-core-docker-dev" ]
+    then
+        echo 'TDX_DEBUG="1"' >> $WDIR/torizon/$BDDIR/conf/local.conf
+    fi
+
     echo "Build environment configured. Building target image $IMAGE"
     echo "> DISTRO=$DISTRO MACHINE=$MACHINE bitbake $IMAGE"
     bitbake $IMAGE
