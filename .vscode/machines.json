@@ -1,0 +1,20 @@
+[
+    {
+        "machine": "verdin-imx8mm",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon",
+        "build_dir": "build-torizon"
+    },
+    {
+        "machine": "apalis-imx8",
+        "image": "torizon-core-docker",
+        "distro": "torizon",
+        "build_dir": "build-torizon"
+    },
+    {
+        "machine": "raspberrypi4-64",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon-upstream",
+        "build_dir": "build-torizon-upstream"
+    }
+]
