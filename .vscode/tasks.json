@@ -198,7 +198,7 @@
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi4-64/torizon-core-docker-raspberrypi4-64.wic.bz2",
+                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi4-64/torizon-core-docker-dev-raspberrypi4-64.wic.bz2",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -428,5 +428,50 @@
             "dependsOn": [
             ]
         },
+        {
+            "label": "choose-machine",
+            "detail": "hide",
+            "command": "docker",
+            "type": "shell",
+            "args": [
+                "run",
+                "--rm",
+                "-it",
+                "-v",
+                // this bind mount should be the host path not the container one
+                "/home/castello/projects/T/toradex-manifest/:/workspace",
+                "torizonextras/ide:latest",
+                "./.vscode/machines.ps1 ${input:machine}"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "configure-build",
+            "detail": "",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "setting up build for ${input:machine}"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "choose-machine"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "machine",
+            "type": "pickString",
+            "description": "Machine",
+            "default": "raspberrypi4-64",
+            "options": [
+                "raspberrypi4-64",
+                "verdin-imx8mm",
+                "apalis-imx8"
+            ]
+        }
     ]
 }
