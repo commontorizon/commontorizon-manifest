@@ -47,7 +47,7 @@
         name="meta-security" 
         path="layers/meta-security" 
         remote="yocto"
-        revision="c79262a30bd385f5dbb009ef8704a1a01644528e" />
+        revision="cc20e2af2ae1c74e306f6c039c4963457c4cbd0f" />
 
     <project 
         name="meta-updater" 
@@ -59,19 +59,19 @@
         name="meta-virtualization" 
         path="layers/meta-virtualization" 
         remote="yocto"
-        revision="9a487c1851aa2021cf24f951957e22fd429c8025" />
+        revision="a7413c5d7568ce91b809ed11f84305b1afb468bb" />
 
     <project 
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="3d431308f59cd9c7046ea59bb164cb5c490b6f93" />
+        revision="6961869d7d4fbeada96d68a978076246941363ba" />
 
     <project 
         name="meta-toradex-torizon" 
         path="layers/meta-toradex-torizon" 
         remote="mbc"
-        revision="cd9eef02695834c3f3fd67aa3d6243f2b9bb0eba">
+        revision="41fefe83223e8bca91d3eb7e11a932ff5c5a52c9">
 
         <linkfile 
             dest="setup-environment" 
