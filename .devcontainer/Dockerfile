@@ -21,6 +21,7 @@ RUN echo \
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     htop \
+    sshpass \
     netcat \
     telnet \
     aarch64-linux-gnu-gcc \
