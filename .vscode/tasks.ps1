@@ -16,6 +16,28 @@
 )]
 param()
 
+$ErrorActionPreference = "Stop"
+
+function _usage ($_fdp = 1) {
+    Write-Host "usage:"
+    Write-Host "    list                    : list the tasks.json labels defined"
+    Write-Host "    desc <task_label>       : describe the task <task_label>"
+    Write-Host "    desc <task_index>       : describe the task <task_index>"
+    Write-Host "    run <task_label>        : run the task <task_label>"
+    Write-Host "    run <task_index>        : run the task <task_index>"
+    Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
+
+    if ($_fdp -eq 0) {
+        Write-Host -ForegroundColor Yellow ""
+        Write-Host -ForegroundColor Yellow "⚠️ :: WARNING :: ⚠️"
+        Write-Host -ForegroundColor Yellow "This script depends on tasks.json and settings.json"
+        Write-Host -ForegroundColor Yellow "These files need to be in the same directory as this script."
+        Write-Host -ForegroundColor Yellow ""
+    }
+
+    exit 0
+}
+
 # settings
 $_overrideEnv = $true;
 $_debug = $false;
@@ -28,14 +50,18 @@ if ($env:TASKS_OVERRIDE_ENV -eq $false) {
     $_overrideEnv = $false;
 }
 
-$tasksFileContent = Get-Content $PSScriptRoot/tasks.json
-$settingsFileContent = Get-Content $PSScriptRoot/settings.json
-$json = $tasksFileContent | ConvertFrom-Json
-$settings = $settingsFileContent | ConvertFrom-Json
-$inputs = $json.inputs
-$inputValues = @{}
-$cliInputs = [System.Collections.ArrayList]@()
-$runDeps = $true;
+try {
+    $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
+    $settingsFileContent = Get-Content $PSScriptRoot/settings.json
+    $json = $tasksFileContent | ConvertFrom-Json
+    $settings = $settingsFileContent | ConvertFrom-Json
+    $inputs = $json.inputs
+    $inputValues = @{}
+    $cliInputs = [System.Collections.ArrayList]@()
+    $runDeps = $true;
+} catch {
+    _usage 0
+}
 
 function settingsToGlobal () {
     foreach ($set in $settings | Get-Member -MemberType Properties) {
@@ -207,11 +233,11 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
         if ($item.Contains("`${command:tcb")) {
 
             if ($item.Contains("tcb.getNextPackageVersion")) {
-                $_next =  (
+                $_ret =  (
                     ./.conf/torizonIO.ps1 `
-                        target latest version ${global:config:tcb.packageName}
+                        package latest version ${global:config:tcb.packageName}
                 )
-                $_next++
+                $_next = [System.Int32]::Parse($_ret) +1
 
                 if ($_debug) {
                     Write-Host -ForegroundColor Green `
@@ -255,7 +281,7 @@ function checkConfig ([System.Collections.ArrayList] $list) {
 
             $value = Invoke-Expression "echo $item"
 
-            if ($value.Contains("`${workspaceFolder")) {
+            if ($null -ne $value -and $value.Contains("`${workspaceFolder")) {
                 $item = $value
             }
         }
@@ -393,6 +419,9 @@ function runTask () {
 
             # we need to change dir if we are setting cwd
             if ($null -ne $taskCwd) {
+                # store the current location
+                $_cwd = Get-Location
+
                 # we use invoke-expression because this way it expand the
                 # variables automatically
                 Invoke-Expression "Set-Location $taskCwd"
@@ -415,6 +444,12 @@ function runTask () {
             # TODO: be explicit about bash as default on documentation
             Invoke-Expression "bash -c `"$_cmd`""
             $exitCode = $LASTEXITCODE
+
+            # go back to the origin location
+            if ($null -ne $taskCwd) {
+                # restore the current location
+                Set-Location $_cwd
+            }
 
             # abort we had a error
             if ($exitCode -ne 0) {
@@ -440,32 +475,39 @@ function getCliInputs () {
 $Global:workspaceFolder = Join-Path $PSScriptRoot ..
 settingsToGlobal
 
-switch ($args[0]) {
-    "list" {
-        listTasksLabel
+try {
+    switch ($args[0]) {
+        "list" {
+            listTasksLabel
+        }
+        "desc" {
+            taskArgumentExecute `
+                $args[1] ${function:descTask} "Argument expected desc <task_label>"
+        }
+        "run" {
+            getCliInputs $args
+            taskArgumentExecute `
+                $args[1] ${function:runTask} "Argument expected run <task_label>"
+        }
+        "run-nodeps" {
+            $runDeps = $false;
+            getCliInputs $args
+            taskArgumentExecute `
+                $args[1] ${function:runTask} "Argument expected run <task_label>"
+        }
+        Default {
+            _usage
+        }
     }
-    "desc" {
-        taskArgumentExecute `
-            $args[1] ${function:descTask} "Argument expected desc <task_label>"
+} catch {
+    Write-Host $_.Exception.Message -Foreground "Red"
+    Write-Host ""
+    $lines = $_.ScriptStackTrace.Split("`n")
+
+    foreach ($line in $lines) {
+        Write-Host "`t$line" -Foreground "DarkGray"
     }
-    "run" {
-        getCliInputs $args
-        taskArgumentExecute `
-            $args[1] ${function:runTask} "Argument expected run <task_label>"
-    }
-    "run-nodeps" {
-        $runDeps = $false;
-        getCliInputs $args
-        taskArgumentExecute `
-            $args[1] ${function:runTask} "Argument expected run <task_label>"
-    }
-    Default {
-        Write-Host "usage:"
-        Write-Host "    list                    : list the tasks.json labels defined"
-        Write-Host "    desc <task_label>       : describe the task <task_label>"
-        Write-Host "    desc <task_index>       : describe the task <task_index>"
-        Write-Host "    run <task_label>        : run the task <task_label>"
-        Write-Host "    run <task_index>        : run the task <task_index>"
-        Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
-    }
+
+    Write-Host ""
+    exit 500
 }
