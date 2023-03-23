@@ -494,7 +494,8 @@
             "options": [
                 "raspberrypi4-64",
                 "verdin-imx8mm",
-                "apalis-imx8"
+                "apalis-imx8",
+                "nezha-allwinner-d1"
             ]
         }
     ]
