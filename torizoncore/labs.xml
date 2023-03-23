@@ -4,6 +4,7 @@
     <include name="base/pinned.xml" />
     <include name="bsp/pinned-nxp.xml" />
     <include name="bsp/pinned-tdx.xml" />
+    <include name="bsp/pinned-ti.xml"/>
     <include name="bsp/pinned-rpi.xml" />
 
     <remote 
