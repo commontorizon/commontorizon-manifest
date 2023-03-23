@@ -16,5 +16,11 @@
         "image": "torizon-core-docker-dev",
         "distro": "torizon-upstream",
         "build_dir": "build-torizon-upstream"
+    },
+    {
+        "machine": "nezha-allwinner-d1",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon-upstream",
+        "build_dir": "build-torizon-upstream"
     }
 ]
