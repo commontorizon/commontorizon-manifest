@@ -42,6 +42,7 @@
     "remoteUser": "usersetup",
     "mounts": [
         "source=${localEnv:HOME}/projects/T/labs/workdir,target=/workdir,type=bind",
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=${localEnv:HOME}/linus-tree,target=/sourcecode,type=bind"
     ]
 }
