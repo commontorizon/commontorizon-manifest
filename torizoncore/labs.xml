@@ -36,7 +36,7 @@
         name="meta-riscv"
         path="layers/meta-riscv" 
         remote="mbc"
-        revision="c10957f909fb7233a04699f054493e3ec85da4b1" />
+        revision="994188a8b48461f2acdcfee9427e590bcbb6d164" />
 
     <project 
         name="meta-intel" 
@@ -72,7 +72,7 @@
         name="meta-toradex-torizon" 
         path="layers/meta-toradex-torizon" 
         remote="mbc"
-        revision="6208c2acdc499ad3832bdcb12c576168028b31ad">
+        revision="372bac391494b9c61f1146254c7a03fd220c9b2b">
 
         <linkfile 
             dest="setup-environment" 
