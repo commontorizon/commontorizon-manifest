@@ -24,7 +24,7 @@ RUN apt-get -q -y update && \
     sshpass \
     netcat \
     telnet \
-    aarch64-linux-gnu-gcc \
+    gcc-aarch64-linux-gnu \
     gdb-multiarch \
     libssl-dev \
     bc \
