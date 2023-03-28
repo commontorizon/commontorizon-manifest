@@ -22,5 +22,11 @@
         "image": "torizon-core-docker-dev",
         "distro": "torizon-upstream",
         "build_dir": "build-torizon-upstream"
+    },
+    {
+        "machine": "intel-corei7-64",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon-upstream",
+        "build_dir": "build-torizon-upstream"
     }
 ]
