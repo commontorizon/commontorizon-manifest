@@ -212,7 +212,7 @@
             ]
         },
         {
-            "label": "flash-sdcard-rpi4",
+            "label": ".💾 Flash Raspberry Pi 4",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -237,7 +237,7 @@
             ]
         },
         {
-            "label": "flash-sdcard-nezha",
+            "label": ".💾 Flash Nezha",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -262,7 +262,7 @@
             ]
         },
         {
-            "label": "flash-sdcard-intel",
+            "label": ".💾 Flash x86-64",
             "detail": "",
             "command": "sudo",
             "type": "shell",
