@@ -72,7 +72,7 @@
         name="meta-toradex-torizon" 
         path="layers/meta-toradex-torizon" 
         remote="mbc"
-        revision="33d52efaed1d6fa396cd71858a3089c986f692f9">
+        revision="2dcd1b856c8fcdfb0c214a41e15a57a1f00cb891">
 
         <linkfile 
             dest="setup-environment" 
