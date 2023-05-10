@@ -78,7 +78,7 @@
                 "-u",
                 "${workspaceFolder}",
                 "-b",
-                "labs-6.2",
+                "6.3-labs",
                 "-m",
                 "torizoncore/labs.xml"
             ],
