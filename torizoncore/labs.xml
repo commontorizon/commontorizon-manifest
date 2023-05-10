@@ -66,13 +66,13 @@
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="6961869d7d4fbeada96d68a978076246941363ba" />
+        revision="fda3e56a06f7d3cef7f73b174bb68c4f1074c26e" />
 
     <project 
         name="meta-toradex-torizon" 
         path="layers/meta-toradex-torizon" 
         remote="mbc"
-        revision="a4f82ddb8363f0f2f17df90ae764d1d0c0bc8c33">
+        revision="a8b850f72dd84a9f51cf2f6ef67d3a8c86491674">
 
         <linkfile 
             dest="setup-environment" 
