@@ -39,7 +39,11 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container"
-            ]
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "create-build-folder",
@@ -228,7 +232,11 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container"
-            ]
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": ".🧹 Clean",
