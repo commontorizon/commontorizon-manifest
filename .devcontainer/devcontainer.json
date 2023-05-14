@@ -9,9 +9,11 @@
                 "dpkristensen-garmin.udev-rules",
                 "ms-vscode.cpptools",
                 "ms-python.python",
+                "ms-vscode.powershell",
                 "microhobby.bitbake2",
                 "microhobby.taskrunnercodeplus",
                 "eamodio.gitlens",
+                "wakatime.vscode-wakatime",
                 "github.copilot"
             ]
         }
