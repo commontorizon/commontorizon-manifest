@@ -35,6 +35,14 @@ RUN apt-get -q -y update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# install powershell
+RUN apt-get -q -y update && \
+    wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell_7.3.4-1.deb_amd64.deb && \
+    apt-get -y install ./powershell_7.3.4-1.deb_amd64.deb && \
+    rm -rf powershell_7.3.4-1.deb_amd64.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # this works on debian
 RUN groupadd -f docker && groupmod --non-unique --gid 998 docker && adduser usersetup docker
 
