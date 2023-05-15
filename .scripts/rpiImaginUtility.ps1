@@ -58,7 +58,7 @@ function _do_stuff ($machine) {
             | Select-Object -ExpandProperty Hash
 
     # now we compress it to .zip
-    zip `
+    zip -j `
         "./tmp/torizon-core-docker-dev-${machine}.img.zip" `
         "./tmp/torizon-core-docker-dev-${machine}.img"
 
