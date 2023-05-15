@@ -670,7 +670,7 @@
                 // this bind mount should be the host path not the container one
                 "/home/castello/projects/T/toradex-manifest/:/workspace",
                 "torizonextras/ide:latest",
-                "./.vscode/machines.ps1 ${input:machine}"
+                "./.scripts/machines.ps1 ${input:machine}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
