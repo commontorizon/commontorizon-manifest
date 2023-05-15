@@ -364,7 +364,7 @@
             "command": "pwsh",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}"
             },
             "args": [
                 "-nop",
