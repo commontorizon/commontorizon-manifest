@@ -21,7 +21,7 @@ $ErrorActionPreference = "Stop"
 $_machine = $args[0]
 
 # read the machines.json file
-$machinesFile = Join-Path $PSScriptRoot "machines.json"
+$machinesFile = Join-Path $PSScriptRoot "../.vscode/machines.json"
 
 # search by the argument that is the machine name
 $machine = `
@@ -31,7 +31,7 @@ $machine = `
 
 # rewrite the settings json setting the machine properties
 if ($null -ne $machine) {
-    $settingsFile = Join-Path $PSScriptRoot "settings.json"
+    $settingsFile = Join-Path $PSScriptRoot "../.vscode/settings.json"
     $settings = Get-Content $settingsFile | ConvertFrom-Json
 
     $settings.machine = $machine.machine
