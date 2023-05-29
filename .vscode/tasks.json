@@ -239,6 +239,30 @@
             }
         },
         {
+            "label": ".🏗️ Clean & Build",
+            "detail": "",
+            "command": "",
+            "type": "shell",
+            "args": [
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "bitbake-clean-torizonCore-container",
+                "build-container"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": ".🧹 Clean",
             "detail": "",
             "command": "",
@@ -333,6 +357,31 @@
             ]
         },
         {
+            "label": ".💾 Flash Beagle",
+            "detail": "",
+            "command": "sudo",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+            },
+            "args": [
+                "bmaptool",
+                "copy",
+                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/beaglebone-yocto/torizon-core-docker-dev-beaglebone-yocto.wic",
+                "/dev/sdb"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": ".💾 Flash x86-64",
             "detail": "",
             "command": "sudo",
@@ -346,6 +395,90 @@
                 "--nobmap",
                 "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/intel-corei7-64/torizon-core-docker-dev-intel-corei7-64.wic",
                 "/dev/sdb"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": ".🔬 Variable Value",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "CMD": "bitbake -e torizon-core-docker | grep \"^${input:variableName}\""
+                }
+            },
+            "args": [
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": ".🔬 Recipe Variable Value",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "CMD": "bitbake -e ${input:recipeName} | grep \"^${input:variableName}\""
+                }
+            },
+            "args": [
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": ".📃 List Recipes",
+            "detail": "",
+            "command": "${config:bitbake.setupScript}",
+            "type": "shell",
+            "options": {
+                "cwd": "/workdir/torizon",
+                "env": {
+                    "EULA": "1",
+                    "ACCEPT_FSL_EULA": "1",
+                    "MACHINE": "${config:machine}",
+                    "IMAGE": "${config:image}",
+                    "CMD": "bitbake-layers show-recipes"
+                }
+            },
+            "args": [
             ],
             "problemMatcher": [
                 "$gcc"
@@ -715,8 +848,19 @@
                 "verdin-imx8mm",
                 "apalis-imx8",
                 "nezha-allwinner-d1",
-                "intel-corei7-64"
+                "intel-corei7-64",
+                "beaglebone-yocto",
             ]
+        },
+        {
+            "id": "variableName",
+            "description": "Variable Name",
+            "type": "promptString"
+        },
+        {
+            "id": "recipeName",
+            "description": "Recipe Name",
+            "type": "promptString"
         }
     ]
 }

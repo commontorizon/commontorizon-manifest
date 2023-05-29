@@ -34,5 +34,11 @@
         "image": "torizon-core-docker-dev",
         "distro": "torizon-upstream",
         "build_dir": "build-torizon-upstream"
+    },
+    {
+        "machine": "beaglebone-yocto",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon-upstream",
+        "build_dir": "build-torizon-upstream"
     }
 ]
