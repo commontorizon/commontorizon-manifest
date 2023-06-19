@@ -82,9 +82,9 @@
                 "-u",
                 "${workspaceFolder}",
                 "-b",
-                "6.3-labs",
+                "kirkstone",
                 "-m",
-                "torizoncore/labs.xml"
+                "horizoncore/default.xml"
             ],
             "problemMatcher": [
                 "$gcc"
