@@ -22,6 +22,11 @@
         fetch="https://github.com/microhobby"
         name="mbc" />
     
+    <remote 
+        alias="repo"
+        fetch="https://github.com/commontorizon"
+        name="cmt" />
+
     <remote
         alias="repo"
         fetch="https://github.com/foundriesio"
@@ -69,10 +74,10 @@
         revision="fda3e56a06f7d3cef7f73b174bb68c4f1074c26e" />
 
     <project 
-        name="meta-toradex-torizon" 
-        path="layers/meta-toradex-torizon" 
-        remote="mbc"
-        revision="501e2838b3e862b3aae09586b3773995e08d1c82">
+        name="meta-common-torizon" 
+        path="layers/meta-common-torizon" 
+        remote="cmt"
+        revision="60e1a5993324d717102a11d58e87f2589169737c">
 
         <linkfile 
             dest="setup-environment" 
