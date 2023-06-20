@@ -74,6 +74,12 @@
         revision="fda3e56a06f7d3cef7f73b174bb68c4f1074c26e" />
 
     <project 
+        name="meta-toradex-security" 
+        path="layers/meta-toradex-security"
+        remote="toradex-torizon"
+        revision="f88ed694cdef6b82f1e3d26f33bea352ea58d34a" />
+
+    <project 
         name="meta-common-torizon" 
         path="layers/meta-common-torizon" 
         remote="cmt"
