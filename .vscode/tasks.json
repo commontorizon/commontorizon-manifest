@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Prepare Build TorizonCore Labs",
+            "label": ".▶️ Init Workdir for Common Torizon",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -51,11 +51,11 @@
             "command": "mkdir",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../"
+                "cwd": "/workdir"
             },
             "args": [
                 "-p",
-                "labs/workdir/torizon"
+                "torizon"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -74,17 +74,17 @@
             "command": "repo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "/workdir/torizon"
             },
             "args": [
                 "init",
                 "--no-repo-verify",
                 "-u",
-                "${workspaceFolder}",
+                "${workspaceFolder}/",
                 "-b",
                 "kirkstone",
                 "-m",
-                "horizoncore/default.xml"
+                "torizoncore/common.xml"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -103,12 +103,12 @@
             "command": "repo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "/workdir/torizon"
             },
             "args": [
                 "sync",
                 "-j",
-                "20"
+                "16"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -127,7 +127,7 @@
             "command": "echo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "/workdir/torizon"
             },
             "args": [
                 "DONE"
@@ -793,16 +793,10 @@
         {
             "label": "choose-machine",
             "detail": "hide",
-            "command": "docker",
+            "command": "pwsh",
             "type": "shell",
             "args": [
-                "run",
-                "--rm",
-                "-it",
-                "-v",
-                // this bind mount should be the host path not the container one
-                "/home/castello/projects/T/toradex-manifest/:/workspace",
-                "torizonextras/ide:latest",
+                "-c",
                 "./.scripts/machines.ps1 ${input:machine}"
             ],
             "dependsOrder": "sequence",
