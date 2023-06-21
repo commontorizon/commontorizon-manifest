@@ -1,4 +1,4 @@
-FROM matheuscastello/crops:kirkstone
+FROM commontorizon/crops:kirkstone
 
 USER root
 
@@ -54,6 +54,9 @@ RUN chmod +x /usr/bin/bitbakes.sh && \
     chmod +x /usr/bin/startup-tdx.sh && \
     chsh -s /bin/bash usersetup && \
     adduser usersetup dialout
+
+# for the wsl docker socket
+RUN groupadd -g 1001 dockerwsl && usermod -aG dockerwsl usersetup
 
 USER usersetup
 
