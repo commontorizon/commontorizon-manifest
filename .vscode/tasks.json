@@ -151,7 +151,7 @@
             "command": "docker",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "run",
@@ -159,7 +159,7 @@
                 "-it",
                 "--name=labs-crops",
                 "-v",
-                "${workspaceFolder}/../labs/workdir:/workdir",
+                "${workspaceFolder}/../workdir:/workdir",
                 "--workdir=/workdir",
                 "-e",
                 "ACCEPT_FSL_EULA=1",
@@ -287,12 +287,12 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi4-64/torizon-core-docker-dev-raspberrypi4-64.wic.bz2",
+                "${workspaceFolder}/../workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi4-64/torizon-core-docker-dev-raspberrypi4-64.wic.bz2",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -312,12 +312,12 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi3-64/torizon-core-docker-dev-raspberrypi3-64.wic.bz2",
+                "${workspaceFolder}/../workdir/torizon/build-torizon-upstream/deploy/images/raspberrypi3-64/torizon-core-docker-dev-raspberrypi3-64.wic.bz2",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -337,12 +337,12 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/nezha-allwinner-d1/torizon-core-docker-dev-nezha-allwinner-d1.wic.gz",
+                "${workspaceFolder}/../workdir/torizon/build-torizon-upstream/deploy/images/nezha-allwinner-d1/torizon-core-docker-dev-nezha-allwinner-d1.wic.gz",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -362,12 +362,12 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/beaglebone-yocto/torizon-core-docker-dev-beaglebone-yocto.wic",
+                "${workspaceFolder}/../workdir/torizon/build-torizon-upstream/deploy/images/beaglebone-yocto/torizon-core-docker-dev-beaglebone-yocto.wic",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -387,13 +387,13 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
                 "--nobmap",
-                "${workspaceFolder}/../labs/workdir/torizon/build-torizon-upstream/deploy/images/intel-corei7-64/torizon-core-docker-dev-intel-corei7-64.wic",
+                "${workspaceFolder}/../workdir/torizon/build-torizon-upstream/deploy/images/intel-corei7-64/torizon-core-docker-dev-intel-corei7-64.wic",
                 "/dev/sdb"
             ],
             "problemMatcher": [
@@ -521,7 +521,7 @@
             "command": "docker",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "run",
@@ -529,7 +529,7 @@
                 "-it",
                 "--name=labs-crops",
                 "-v",
-                "${workspaceFolder}/../labs/workdir:/workdir",
+                "${workspaceFolder}/../workdir:/workdir",
                 "--workdir=/workdir",
                 "-e",
                 "EULA=1",
@@ -588,7 +588,7 @@
             "command": "docker",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "run",
@@ -596,7 +596,7 @@
                 "-it",
                 "--name=labs-crops",
                 "-v",
-                "${workspaceFolder}/../labs/workdir:/workdir",
+                "${workspaceFolder}/../workdir:/workdir",
                 "--workdir=/workdir",
                 "-e",
                 "ACCEPT_FSL_EULA=1",
@@ -655,7 +655,7 @@
             "command": "docker",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../labs/workdir/torizon"
+                "cwd": "${workspaceFolder}/../workdir/torizon"
             },
             "args": [
                 "run",
@@ -663,7 +663,7 @@
                 "-it",
                 "--name=labs-crops",
                 "-v",
-                "${workspaceFolder}/../labs/workdir:/workdir",
+                "${workspaceFolder}/../workdir:/workdir",
                 "--workdir=/workdir",
                 "-e",
                 "ACCEPT_FSL_EULA=1",
