@@ -823,14 +823,27 @@
             "type": "shell",
             "args": [
                 "-c",
-                "./.scripts/machines.ps1 ${input:machine}"
+                "./.scripts/machines.ps1 ${input:machine} ${input:image}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
             ]
         },
         {
-            "label": ".🛠️ Configure Build to Machine",
+            "label": "choose-image",
+            "detail": "hide",
+            "command": "pwsh",
+            "type": "shell",
+            "args": [
+                "-c",
+                "./.scripts/images.ps1 ${input:image}"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": ".🛠️ Configure Machine and Image",
             "detail": "",
             "command": "echo",
             "type": "shell",
@@ -839,7 +852,8 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "choose-machine"
+                "choose-machine",
+                "choose-image"
             ]
         },
         {
@@ -900,6 +914,16 @@
                 "nezha-allwinner-d1",
                 "intel-corei7-64",
                 "beaglebone-yocto",
+            ]
+        },
+        {
+            "id": "image",
+            "type": "pickString",
+            "description": "Image to build",
+            "default": "torizon-core-common-docker",
+            "options": [
+                "torizon-core-common-docker",
+                "torizon-core-common-docker-dev"
             ]
         },
         {
