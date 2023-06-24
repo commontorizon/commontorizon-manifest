@@ -8,7 +8,8 @@
   "notifyAddr": "192.168.0.51",
   "notifyPort": "9000",
   "machine": "beaglebone-yocto",
-  "image": "torizon-core-common-docker-dev",
-  "distro": "torizon-upstream",
-  "build_dir": "build-torizon-upstream"
+  "image": "torizon-core-common-docker",
+  "distro": "torizon",
+  "build_dir": "build-torizon",
+  "image_format": "wic"
 }
