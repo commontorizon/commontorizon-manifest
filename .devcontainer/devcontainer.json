@@ -12,6 +12,7 @@
                 "ms-vscode.powershell",
                 "microhobby.bitbake2",
                 "microhobby.taskrunnercodeplus",
+                "microhobby.vscode-tasks-label",
                 "eamodio.gitlens",
                 "github.copilot"
             ]
