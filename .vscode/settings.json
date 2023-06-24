@@ -2,13 +2,13 @@
   "window.title": "${folderName}",
   "terminal.integrated.defaultProfile.linux": "bash",
   "bitbake.machine": "raspberrypi4-64",
-  "bitbake.distro": "torizon-upstream",
+  "bitbake.distro": "torizon",
   "bitbake.buildDir": "build-torizon",
   "bitbake.setupScript": "startup-tdx.sh",
   "notifyAddr": "192.168.0.51",
   "notifyPort": "9000",
-  "machine": "raspberrypi4-64",
-  "image": "torizon-core-docker-dev",
+  "machine": "beaglebone-yocto",
+  "image": "torizon-core-common-docker-dev",
   "distro": "torizon-upstream",
   "build_dir": "build-torizon-upstream"
 }
