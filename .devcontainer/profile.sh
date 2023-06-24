@@ -12,7 +12,7 @@ fi
 # Check if default build directory is setup
 if [ -z "$1" ]
 then
-    BDDIR=build-torizon*
+    BDDIR=build-torizon
 else
     BDDIR="$1"
 fi
