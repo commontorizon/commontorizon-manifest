@@ -38,6 +38,7 @@ if ($null -ne $machine) {
     $settings.image = $machine.image
     $settings.distro = $machine.distro
     $settings.build_dir = $machine.build_dir
+    $settings.image_format = $machine.image_format
 
     # write the settings back to the file
     $settings | ConvertTo-Json -Depth 100 | Out-File $settingsFile
