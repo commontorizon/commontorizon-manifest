@@ -813,6 +813,7 @@
                 "nezha-allwinner-d1",
                 "intel-corei7-64",
                 "beaglebone-yocto",
+                "beagleplay",
             ]
         },
         {

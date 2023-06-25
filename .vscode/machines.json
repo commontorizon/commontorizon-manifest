@@ -47,5 +47,12 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic"
+    },
+    {
+        "machine": "beagleplay",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon",
+        "build_dir": "build-torizon",
+        "image_format": "wic.xz"
     }
 ]
