@@ -7,9 +7,9 @@
   "bitbake.setupScript": "startup-tdx.sh",
   "notifyAddr": "192.168.0.51",
   "notifyPort": "9000",
-  "machine": "beaglebone-yocto",
-  "image": "torizon-core-common-docker",
+  "machine": "beagleplay",
+  "image": "torizon-core-common-docker-dev",
   "distro": "torizon",
   "build_dir": "build-torizon",
-  "image_format": "wic"
+  "image_format": "wic.xz"
 }
