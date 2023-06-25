@@ -343,7 +343,7 @@
                     "ACCEPT_FSL_EULA": "1",
                     "MACHINE": "${config:machine}",
                     "IMAGE": "${config:image}",
-                    "CMD": "bitbake -e torizon-core-docker | grep \"^${input:variableName}\""
+                    "CMD": "bitbake -e ${config:image} | grep \"^${input:variableName}\""
                 }
             },
             "args": [
