@@ -54,5 +54,12 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic.xz"
+    },
+    {
+        "machine": "raspberrypi0-2w-64",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon",
+        "build_dir": "build-torizon",
+        "image_format": "wic.bz2"
     }
 ]

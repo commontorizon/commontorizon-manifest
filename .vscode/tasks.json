@@ -872,6 +872,7 @@
                 "intel-corei7-64",
                 "beaglebone-yocto",
                 "beagleplay",
+                "raspberrypi0-2w-64",
             ]
         },
         {
