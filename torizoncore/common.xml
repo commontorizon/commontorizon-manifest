@@ -53,25 +53,25 @@
         name="meta-security" 
         path="layers/meta-security" 
         remote="yocto"
-        revision="cc20e2af2ae1c74e306f6c039c4963457c4cbd0f" />
+        revision="d398cc6ea6716afd3a3a6e88ad8fbdc89510ef23" />
 
     <project 
         name="meta-updater" 
         path="layers/meta-updater" 
         remote="uptane"
-        revision="ffbbc2b9f46a60bd2d51be53079252f8e6304a8b" />
+        revision="30215ccd7df914d3ec577ac5c11c7a4dc777634a" />
 
     <project 
         name="meta-virtualization" 
         path="layers/meta-virtualization" 
         remote="yocto"
-        revision="a7413c5d7568ce91b809ed11f84305b1afb468bb" />
+        revision="b3b3dbc67504e8cd498d6db202ddcf5a9dd26a9d" />
 
     <project 
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="fda3e56a06f7d3cef7f73b174bb68c4f1074c26e" />
+        revision="50942e30e5d81e3894fd4db3d8b79e2cb53d2a9b" />
 
     <project 
         name="meta-toradex-security" 
