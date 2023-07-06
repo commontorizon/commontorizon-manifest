@@ -893,6 +893,7 @@
                 "raspberrypi4-64",
                 "raspberrypi3-64",
                 "verdin-imx8mm",
+                "verdin-imx8mp",
                 "apalis-imx8",
                 "nezha-allwinner-d1",
                 "intel-corei7-64",
