@@ -7,6 +7,13 @@
         "image_format": "none"
     },
     {
+        "machine": "verdin-imx8mp",
+        "image": "torizon-core-docker-dev",
+        "distro": "torizon",
+        "build_dir": "build-torizon",
+        "image_format": "none"
+    },
+    {
         "machine": "apalis-imx8",
         "image": "torizon-core-docker",
         "distro": "torizon",
