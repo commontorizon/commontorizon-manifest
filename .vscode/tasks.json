@@ -358,6 +358,36 @@
             ]
         },
         {
+            "label": ".💾 TEZI Copy",
+            "detail": "",
+            "command": "sudo",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/.."
+            },
+            "args": [
+                "mount", "/dev/sdb1", "./mount",
+                "&&",
+                "sudo", "rm", "-rf", "./mount/*",
+                "&&",
+                "sudo", "cp", "-r", "${workspaceFolder}/../workdir/torizon/build-${config:distro}/deploy/images/${config:machine}/*", "./mount",
+                "&&",
+                "sync",
+                "&&",
+                "sudo", "umount", "./mount"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": ".🔬 Variable Value",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
