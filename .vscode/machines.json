@@ -1,72 +1,82 @@
 [
     {
         "machine": "verdin-imx8mm",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "none"
+        "image_format": "none",
+        "bmap": false
     },
     {
         "machine": "verdin-imx8mp",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "none"
+        "image_format": "none",
+        "bmap": false
     },
     {
         "machine": "apalis-imx8",
-        "image": "torizon-core-docker",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "none"
+        "image_format": "none",
+        "bmap": false
     },
     {
         "machine": "raspberrypi4-64",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic.bz2"
+        "image_format": "wic.bz2",
+        "bmap": true
     },
     {
         "machine": "raspberrypi3-64",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic.bz2"
+        "image_format": "wic.bz2",
+        "bmap": true
     },
     {
         "machine": "nezha-allwinner-d1",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic.gz"
+        "image_format": "wic.gz",
+        "bmap": true
     },
     {
         "machine": "intel-corei7-64",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic"
+        "image_format": "wic",
+        "bmap": false
     },
     {
         "machine": "beaglebone-yocto",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic"
+        "image_format": "wic",
+        "bmap": true
     },
     {
         "machine": "beagleplay",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic.xz"
+        "image_format": "wic.xz",
+        "bmap": true
     },
     {
         "machine": "raspberrypi0-2w-64",
-        "image": "torizon-core-docker-dev",
+        "image": "torizon-core-common-docker-dev",
         "distro": "torizon",
         "build_dir": "build-torizon",
-        "image_format": "wic.bz2"
+        "image_format": "wic.bz2",
+        "bmap": true
     }
 ]
