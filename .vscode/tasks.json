@@ -312,13 +312,13 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../workdir/torizon"
+                "cwd": "/workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
-                "${workspaceFolder}/../workdir/torizon/build-${config:distro}/deploy/images/${config:machine}/${config:image}-${config:machine}.${config:image_format}",
-                "/dev/sdb"
+                "/workdir/torizon/build-${config:distro}/deploy/images/${config:machine}/${config:image}-${config:machine}.${config:image_format}",
+                "${config:flash_device}"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -337,14 +337,14 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/../workdir/torizon"
+                "cwd": "/workdir/torizon"
             },
             "args": [
                 "bmaptool",
                 "copy",
                 "--nobmap",
-                "${workspaceFolder}/../workdir/torizon/build-${config:distro}/deploy/images/${config:machine}/${config:image}-${config:machine}.${config:image_format}",
-                "/dev/sdb"
+                "/workdir/torizon/build-${config:distro}/deploy/images/${config:machine}/${config:image}-${config:machine}.${config:image_format}",
+                "${config:flash_device}"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -363,10 +363,11 @@
             "command": "sudo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/.."
+                "cwd": "/workdir/"
             },
             "args": [
-                "mount", "/dev/sdb1", "./mount",
+                "mkdir", "-p", "./mount",
+                "mount", "${config:flash_device}1", "./mount",
                 "&&",
                 "sudo", "rm", "-rf", "./mount/*",
                 "&&",
