@@ -46,6 +46,7 @@
     "initializeCommand": "mkdir -p ${localWorkspaceFolder}/../workdir",
     "mounts": [
         "source=${localWorkspaceFolder}/../workdir,target=/workdir,type=bind",
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=/dev,target=/dev,type=bind"
     ]
 }
