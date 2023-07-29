@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": ".▶️ Init Workdir for Common Torizon",
+            "label": "- Init Workdir for Common Torizon",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -12,7 +12,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "repo",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -34,7 +34,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -62,7 +62,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -91,7 +91,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -115,7 +115,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -139,7 +139,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "label": ".📋 Repo Init Sync",
+            "label": "- Repo Init Sync",
             "detail": "",
             "command": "echo",
             "type": "shell",
@@ -161,7 +161,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "repo-sync",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -198,7 +198,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -233,7 +233,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -241,7 +241,7 @@
             ]
         },
         {
-            "label": ".🆕 Build",
+            "label": "- Build",
             "detail": "",
             "command": "",
             "type": "shell",
@@ -251,7 +251,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "file-binary",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -264,7 +264,7 @@
             }
         },
         {
-            "label": ".🏗️ Clean & Build",
+            "label": "- Clean & Build",
             "detail": "",
             "command": "",
             "type": "shell",
@@ -274,7 +274,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "clear-all",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -288,7 +288,7 @@
             }
         },
         {
-            "label": ".🧹 Clean",
+            "label": "- Clean",
             "detail": "",
             "command": "",
             "type": "shell",
@@ -298,7 +298,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "tree-filter-clear",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -307,7 +307,7 @@
             ]
         },
         {
-            "label": ".💾 Flash Image",
+            "label": "- Flash Image",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -324,7 +324,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "save",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -332,7 +332,7 @@
             ]
         },
         {
-            "label": ".💾 Flash Image --nobmap",
+            "label": "- Flash Image --nobmap",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -350,7 +350,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "save-all",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -358,7 +358,7 @@
             ]
         },
         {
-            "label": ".💾 TEZI Copy",
+            "label": "- TEZI Copy",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -381,7 +381,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "package",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -389,7 +389,7 @@
             ]
         },
         {
-            "label": ".📦 TEZI ZIP",
+            "label": "- TEZI ZIP",
             "detail": "",
             "command": "sudo",
             "type": "shell",
@@ -406,7 +406,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "file-zip",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -414,7 +414,7 @@
             ]
         },
         {
-            "label": ".🔬 Variable Value",
+            "label": "- Variable Value",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
             "type": "shell",
@@ -434,7 +434,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "search",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -442,7 +442,7 @@
             ]
         },
         {
-            "label": ".🔬 Recipe Variable Value",
+            "label": "- Recipe Variable Value",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
             "type": "shell",
@@ -462,7 +462,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "search",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -470,7 +470,7 @@
             ]
         },
         {
-            "label": ".📃 List Recipes",
+            "label": "- List Recipes",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
             "type": "shell",
@@ -490,7 +490,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "list-selection",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -498,7 +498,7 @@
             ]
         },
         {
-            "label": ".📃 Generate dependency info",
+            "label": "- Generate dependency info",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
             "type": "shell",
@@ -519,7 +519,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "list-selection",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -527,7 +527,7 @@
             ]
         },
         {
-            "label": ".📃 Environment variables info",
+            "label": "- Environment variables info",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
             "type": "shell",
@@ -548,7 +548,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "list-selection",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -572,7 +572,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -609,7 +609,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -639,7 +639,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -676,7 +676,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -706,7 +706,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -739,7 +739,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -766,7 +766,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -774,7 +774,7 @@
             ]
         },
         {
-            "label": ".📂 Open Layers Workspace",
+            "label": "- Open Layers Workspace",
             "detail": "",
             "command": "code",
             "type": "shell",
@@ -793,7 +793,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "folder-opened",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -802,7 +802,7 @@
             ]
         },
         {
-            "label": ".📂 Open Kernel Workspace",
+            "label": "- Open Kernel Workspace",
             "detail": "",
             "command": "code",
             "type": "shell",
@@ -821,7 +821,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "folder-opened",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -829,7 +829,7 @@
             ]
         },
         {
-            "label": ".📂 Open U-Boot Workspace",
+            "label": "- Open U-Boot Workspace",
             "detail": "",
             "command": "code",
             "type": "shell",
@@ -848,7 +848,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "folder-opened",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -858,6 +858,7 @@
         {
             "label": "choose-machine",
             "detail": "hide",
+            "hide": true,
             "command": "pwsh",
             "type": "shell",
             "args": [
@@ -871,6 +872,7 @@
         {
             "label": "choose-image",
             "detail": "hide",
+            "hide": true,
             "command": "pwsh",
             "type": "shell",
             "args": [
@@ -882,7 +884,7 @@
             ]
         },
         {
-            "label": ".🛠️ Configure Machine and Image",
+            "label": "- Configure Machine and Image",
             "detail": "",
             "command": "echo",
             "type": "shell",
@@ -893,11 +895,16 @@
             "dependsOn": [
                 "choose-machine",
                 "choose-image"
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "configure-build",
             "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "shell",
             "args": [
@@ -931,7 +938,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "primitive-dot",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
