@@ -4,10 +4,14 @@ To simplify installation we provide a manifest for the repo tool which manages
 the different git repositories and the used versions.
 [more on repo](https://code.google.com/p/git-repo/)
 
-This manifest allows setting up TorizonCore or Toradex Reference Images.
+This manifest allows setting up TorizonCore, Common Torizon, or Toradex Reference Images.
 
 For our internal use it also allows to setup OE for the Toradex Easy Installer and
 our internal Tester.
+
+## Getting Started and Documentation Common Torizon
+
+- [How to Build](https://github.com/commontorizon/Documentation/blob/main/BUILDING.md)
 
 ## Getting Started and Documentation TorizonCore
 
