@@ -28,6 +28,7 @@ RUN apt-get -q -y update && \
     gdb-multiarch \
     libssl-dev \
     bc \
+    bmap-tools \
     docker-ce \
     docker-ce-cli \
     containerd.io \
@@ -57,6 +58,10 @@ RUN chmod +x /usr/bin/bitbakes.sh && \
 
 # for the wsl docker socket
 RUN groupadd -g 1001 dockerwsl && usermod -aG dockerwsl usersetup
+
+## ⚠️⚠️ WARNING: This is a security risk ⚠️⚠️
+## This is only for development purposes and should never be used in production!
+RUN echo "usersetup ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER usersetup
 
