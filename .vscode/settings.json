@@ -5,11 +5,12 @@
   "bitbake.distro": "torizon",
   "bitbake.buildDir": "build-torizon",
   "bitbake.setupScript": "startup-tdx.sh",
+  "flash_device": "/dev/sdb",
   "notifyAddr": "192.168.0.51",
   "notifyPort": "9000",
-  "machine": "beagleplay",
+  "machine": "raspberrypi4-64",
   "image": "torizon-core-common-docker-dev",
   "distro": "torizon",
   "build_dir": "build-torizon",
-  "image_format": "wic.xz"
+  "image_format": "wic.bz2"
 }
