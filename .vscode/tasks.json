@@ -242,7 +242,7 @@
         },
         {
             "label": "- Build",
-            "detail": "",
+            "detail": "Build the image configured from the\n'Configure Machine and Image' task",
             "command": "",
             "type": "shell",
             "args": [
@@ -885,7 +885,7 @@
         },
         {
             "label": "- Configure Machine and Image",
-            "detail": "",
+            "detail": "Choose the target machine and image to build",
             "command": "echo",
             "type": "shell",
             "args": [
