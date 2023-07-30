@@ -78,5 +78,13 @@
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
         "bmap": true
+    },
+    {
+        "machine": "qemuarm64",
+        "image": "torizon-core-common-docker-dev",
+        "distro": "torizon",
+        "build_dir": "build-torizon",
+        "image_format": "wic.bz2",
+        "bmap": true
     }
 ]

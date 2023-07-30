@@ -963,6 +963,7 @@
                 "beaglebone-yocto",
                 "beagleplay",
                 "raspberrypi0-2w-64",
+                "qemuarm64"
             ]
         },
         {
