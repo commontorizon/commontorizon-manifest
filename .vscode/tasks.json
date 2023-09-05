@@ -498,6 +498,82 @@
             ]
         },
         {
+            "label": "configure-bridge",
+            "detail": "",
+            "hide": true,
+            "command": "sudo",
+            "type": "shell",
+            "options": {
+                //"cwd": "/workdir/torizon/build-torizon/deploy/images/qemuarm64",
+                "cwd": "/mnt/factory/build/workdir/torizon/build-torizon/deploy/images/qemuarm64",
+                "env": {
+                }
+            },
+            "args": [
+                "ip", "link", "add", "br0", "type", "bridge",
+                "&&",
+                "sudo", "ip", "link", "set", "dev", "enp3s0", "master", "br0",
+                "&&",
+                "sudo", "dhclient", "br0"
+                //"sudo", "ip", "link", "set", "dev", "br0", "up"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "run-all",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "- Run qemuarm64",
+            "detail": "TorizonCore Emulator Dual Core a57 2GB RAM",
+            "command": "sudo",
+            "type": "shell",
+            "options": {
+                //"cwd": "/workdir/torizon/build-torizon/deploy/images/qemuarm64",
+                "cwd": "/mnt/factory/build/workdir/torizon/build-torizon/deploy/images/qemuarm64",
+                "env": {
+                }
+            },
+            "args": [
+                "qemu-system-aarch64",
+                "-M", "virt",
+                "-cpu", "cortex-a57",
+                "-m", "2048",
+                "-smp", "2",
+                //"-netdev", "bridge,br=br0,id=network0",
+                //"-device", "virtio-net-pci,netdev=network0",
+                //"-net", "nic,model=virtio",
+                //"-net", "user",
+                "-netdev", "tap,id=net0,ifname=tap0,script=no,downscript=no",
+                "-device", "virtio-net-pci,netdev=net0,mac=DE:AD:BE:EF:23:45",
+                "-device", "virtio-gpu-pci",
+                "-drive", "if=virtio,file=torizon-core-common-docker-dev-qemuarm64.wic,format=raw",
+                "-no-reboot",
+                "-no-acpi",
+                "-bios", "u-boot.bin",
+                "-d", "unimp", 
+                "-semihosting-config enable,target=native",
+                "-serial", "mon:stdio",
+                "-serial", "null",
+                "-display", "sdl,gl=on"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "run-all",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "- Generate dependency info",
             "detail": "",
             "command": "${config:bitbake.setupScript}",
@@ -963,7 +1039,8 @@
                 "beaglebone-yocto",
                 "beagleplay",
                 "raspberrypi0-2w-64",
-                "qemuarm64"
+                "qemuarm64",
+                "raspberrypi0-wifi"
             ]
         },
         {
