@@ -9,5 +9,5 @@
         name="meta-raspberrypi" 
         path="layers/meta-raspberrypi" 
         remote="agh" 
-        revision="dacad9302a92b0b7edf8546cdcad1f8ef753e462"/>
+        revision="59a6a1b5dd1e21189adec49c61eae04ed3e70338"/>
 </manifest>
