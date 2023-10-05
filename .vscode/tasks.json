@@ -1040,7 +1040,8 @@
                 "beagleplay",
                 "raspberrypi0-2w-64",
                 "qemuarm64",
-                "raspberrypi0-wifi"
+                "raspberrypi0-wifi",
+                "qemux86-64"
             ]
         },
         {
