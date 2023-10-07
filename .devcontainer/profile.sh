@@ -55,27 +55,6 @@ else
     DISTRO=$DISTRO MACHINE=$MACHINE source setup-environment
 fi
 
-# Accept Freescale/NXP EULA
-if [ -z "$ACCEPT_FSL_EULA" ]
-then
-    echo 'You have to accept freescale EULA. Read it carefully and then accept it.'
-    echo 'Press "space" to scroll down and "q" to exit'
-    sleep 3
-    less $WDIR/torizon/layers/meta-freescale/EULA
-    while true; do
-        read -p "Do you accept the EULA? [y/n] " yn
-        case $yn in
-            [Yy]* ) echo 'EULA accepted'
-                echo 'ACCEPT_FSL_EULA="1"' >> $WDIR/torizon/$BDDIR/conf/local.conf
-                break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
-else
-    echo 'ACCEPT_FSL_EULA="1"' >> $WDIR/torizon/$BDDIR/conf/local.conf
-fi
-
 # Only start build if requested
 if [ -z "$IMAGE" ]
 then
