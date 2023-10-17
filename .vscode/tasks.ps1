@@ -17,6 +17,10 @@
 param()
 
 $ErrorActionPreference = "Stop"
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
+)]
+$PSNativeCommandUseErrorActionPreference = $true
 
 function _usage ($_fdp = 1) {
     Write-Host "usage:"
@@ -41,6 +45,14 @@ function _usage ($_fdp = 1) {
 # settings
 $_overrideEnv = $true;
 $_debug = $false;
+$_gitlab_ci = $false
+
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    # for gitlab-ci we need to set the docker host
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+    $_gitlab_ci = $true
+}
 
 if ($env:TASKS_DEBUG -eq $true) {
     $_debug = $true;
@@ -48,6 +60,12 @@ if ($env:TASKS_DEBUG -eq $true) {
 
 if ($env:TASKS_OVERRIDE_ENV -eq $false) {
     $_overrideEnv = $false;
+}
+
+if ($env:TASKS_USE_PWSH_INSTEAD_BASH -eq $true) {
+    $_usePwshInsteadBash = $true;
+} else {
+    $_usePwshInsteadBash = $false;
 }
 
 try {
@@ -94,9 +112,19 @@ function getTasksLabels () {
 }
 
 function listTasksLabel () {
+    $_noIndex = $false
+
+    if ($null -ne $args[0]) {
+        if ($args[0] -eq "--no-index") {
+            $_noIndex = $true
+        }
+    }
+
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($null -ne $json.tasks[$i].label) {
-            Write-Host -NoNewline "$($i + 1).`t"
+            if ($_noIndex -eq $false) {
+                Write-Host -NoNewline "$($i + 1).`t"
+            }
             Write-Host $json.tasks[$i].label
         }
     }
@@ -271,6 +299,34 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
+# check if the string contains special characters
+function _containsSpecialChars ([String] $str) {
+    $ret = $false
+
+    if (
+        $str -match "[^a-zA-Z0-9\.\-_&]"
+    ) {
+        $ret = $true
+    }
+
+    return $ret
+}
+
+function scapeArgs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    # for now only scaping double quotes
+    foreach ($item in $list) {
+        if ($item.Contains("`"")) {
+            $item = $item.Replace("`"", "```"")
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkConfig ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -279,11 +335,77 @@ function checkConfig ([System.Collections.ArrayList] $list) {
         if ($item.Contains("config:")) {
             $item = $item.Replace("config:", "global:config:")
 
-            $value = Invoke-Expression "echo $item"
+            $value = Invoke-Expression "echo `"$item`""
 
             if ($null -ne $value -and $value.Contains("`${workspaceFolder")) {
                 $item = $value
             }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function checkLongArgs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains(" ")) {
+            $item = "'$item'"
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+##
+# If the user is using bash as default shell, we need to scape the $ special
+# characters, because powershell will try to expand the variables before it
+# reach the bash shell
+##
+function bashVariables ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("$")) {
+
+            # if $env
+            # if ${}
+            # if $global
+            # then we continue because these are meant to be expanded
+            if (
+                $item.Contains("`$global:") -or
+                $item.Contains("`$env:") -or 
+                $item.Contains("`${")
+            ) {
+                [void]$ret.Add($item)
+                continue
+            }
+
+            # ok, we can scape it
+            $item = $item.Replace("`$", "``$")
+            [void]$ret.Add($item)
+        } else {
+            [void]$ret.Add($item)
+        }
+    }
+
+    return $ret
+}
+
+function quotingSpecialChars ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        $_specialChar = _containsSpecialChars($item)
+        $_space = $item.Contains(" ")
+
+        if ($_specialChar -and -not $_space) {
+            $item = "'$item'"
         }
 
         [void]$ret.Add($item)
@@ -351,8 +473,9 @@ function _parseEnvs () {
     $expValue = checkTorizonInputs($expValue)
     $expValue = checkDockerInputs($expValue)
     $expValue = checkTCBInputs($expValue)
-    $expValue  = checkInput($expValue)
+    $expValue = checkInput($expValue)
     $expValue = checkConfig($expValue)
+    $expValue = bashVariables($expValue)
     $expValue = $expValue.ToString()
     $_env = Invoke-Expression "echo `"$expValue`""
 
@@ -366,20 +489,46 @@ function _parseEnvs () {
     return $_env
 }
 
+function _replaceDockerHost () {
+    $value = $args[0]
+
+    if ($value -match "DOCKER_HOST=") {
+        $value = $value.Replace("DOCKER_HOST=", "DOCKER_HOST=tcp://docker:2375")
+    }
+
+    return $value
+}
+
 function runTask () {
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($json.tasks[$i].label -eq $args[0]) {
             $task = $json.tasks[$i]
-            $taskCmd = $task.command
-            $taskArgs = checkWorkspaceFolder($task.args)
+            $taskCmd = checkConfig($task.command)
+            $taskArgs = scapeArgs($task.args)
+            $taskArgs = checkWorkspaceFolder($taskArgs)
             $taskArgs = checkTorizonInputs($taskArgs)
             $taskArgs = checkDockerInputs($taskArgs)
             $taskArgs = checkTCBInputs($taskArgs)
             $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
+            $taskArgs = checkLongArgs($taskArgs)
+            $taskArgs = bashVariables($taskArgs)
+            $taskArgs = quotingSpecialChars($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
+
+            $isBackground = ""
+            if ($task.isBackground -eq $true) {
+                $isBackground = " &"
+            }
+
+            # FIXME: if using powershell instead bash the background will start
+            # a new job, this is was not been well tested
+            # is gitlab ci
+            if ($_gitlab_ci -eq $true) {
+                $taskCmd = _replaceDockerHost($taskCmd)
+            }
 
             # inject env
             if ($null -ne $taskEnv) {
@@ -428,8 +577,8 @@ function runTask () {
             }
 
             # parse the variables
-            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
-            
+            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs $isBackground`""
+
             if ($env:TASKS_DEBUG -eq $true) {
                 Write-Host -ForegroundColor Yellow `
                     "Command: $taskCmd"
@@ -439,10 +588,36 @@ function runTask () {
                     "Parsed Command: $_cmd"
             }
 
+            # all to global
+            # we are spawning a new process, so we need to set all the envs
+            # as global, so the new process can see it
+            # this is useful when the user set bash variables
+            $_ALLENV = $(Get-ChildItem env:)
+            foreach ($_env in $_ALLENV) {
+                try {
+                # set it as a $Global:
+                Set-Variable `
+                    -Scope Global `
+                    -Name $_env.Name -Value $_env.Value
+                } catch {
+                    # ignore
+                    # some variables are not overwrite
+                }
+            }
+
             # execute the task
-            # use bash as default
-            # TODO: be explicit about bash as default on documentation
-            Invoke-Expression "bash -c `"$_cmd`""
+            if ($task.type -eq "shell") {
+                if ($_usePwshInsteadBash -eq $false) {
+                    # use bash as default
+                    # TODO: be explicit about bash as default on documentation
+                    Invoke-Expression "bash -c `"$_cmd`""
+                } else {
+                    Invoke-Expression "pwsh -nop -c `"$_cmd`""
+                }
+            } else {
+                Invoke-Expression $_cmd
+            }
+
             $exitCode = $LASTEXITCODE
 
             # go back to the origin location
@@ -472,13 +647,21 @@ function getCliInputs () {
 
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
-$Global:workspaceFolder = Join-Path $PSScriptRoot ..
+if (
+    ($null -eq $env:APOLLOX_WORKSPACE) -and 
+    ($env:APOLLOX_CONTAINER -ne 1)
+) {
+    $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+} else {
+    $Global:workspaceFolder = $env:APOLLOX_WORKSPACE
+}
+
 settingsToGlobal
 
 try {
     switch ($args[0]) {
         "list" {
-            listTasksLabel
+            listTasksLabel $args[1]
         }
         "desc" {
             taskArgumentExecute `
