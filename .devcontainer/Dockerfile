@@ -65,4 +65,8 @@ RUN echo "usersetup ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER usersetup
 
+# configure a dummy git user
+RUN git config --global user.email "common@torizon" && \
+    git config --global user.name "Common Torizon"
+
 CMD ["/bin/bash"]
