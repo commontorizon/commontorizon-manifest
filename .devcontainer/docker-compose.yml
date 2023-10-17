@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  crops-torizon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: crops-torizon:latest
+    container_name: crops-common-torizon
+    network_mode: host
+    privileged: true
+    user: usersetup
+    stdin_open: true
+    tty: true
+    command: bash
+    attach: false
+    working_dir: /workspaces/commontorizon-manifest
+    volumes:
+      - ../../workdir:/workdir
+      - ../:/workspaces/commontorizon-manifest
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev:/dev
+    environment:
+      - EULA=1
+      - ACCEPT_FSL_EULA=1
+      - MACHINE=raspberrypi4-64
+      - DISTRO=torizon-upstream
+      - IMAGE=torizon-core-docker
+      - GIT_AUTHOR_EMAIL=common@torizon
+      - GIT_AUTHOR_COMMITTER=common@torizon
