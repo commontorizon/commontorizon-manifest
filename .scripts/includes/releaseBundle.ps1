@@ -71,6 +71,8 @@ function releaseBundle ($machine, $tag) {
             -Path "torizon-core-common-docker-dev-$tag-$($machine.machine).img" `
             -Algorithm SHA256 `
                 | Select-Object -ExpandProperty Hash
+        # set it to lowercase, Raspberry Pi Imager needs it
+        $sha256sum = $sha256sum.ToLower()
 
         # clean the .img
         rm $_imgPath
