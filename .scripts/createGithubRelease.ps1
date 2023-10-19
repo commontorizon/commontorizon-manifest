@@ -44,7 +44,7 @@ $Global:_os_list_imagingutility `
         | Out-File "/releases/os_list_imagingutility.json"
 
 # get the content from the release notes
-$_mdURL = "https://raw.githubusercontent.com/commontorizon/Documentation/main/releases/v6.4.0.md"
+$_mdURL = "https://raw.githubusercontent.com/commontorizon/Documentation/main/releases/$tag.md"
 $releaseNotes = (Invoke-WebRequest -Uri $_mdURL).Content
 
 Write-Host -ForegroundColor Blue `
