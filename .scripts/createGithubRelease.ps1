@@ -36,6 +36,12 @@ foreach ($machine in $machines) {
     }
 }
 
+# create the Raspberry Pi Imager .json file
+# dump the json file
+$Global:_os_list_imagingutility `
+    | ConvertTo-Json -Depth 100 `
+        | Out-File "/releases/os_list_imagingutility.json"
+
 # get the content from the release notes
 $_mdURL = "https://raw.githubusercontent.com/commontorizon/Documentation/main/releases/v6.4.0.md"
 $releaseNotes = (Invoke-WebRequest -Uri $_mdURL).Content
@@ -63,6 +69,6 @@ gh release create --prerelease --target kirkstone `
     $tag `
     -t "Common Torizon $tag" `
     -n $releaseNotes `
-    /releases/*.zip
+    /releases/*
 
 Set-Location -
