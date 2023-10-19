@@ -29,7 +29,8 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
-        "bmap": true
+        "bmap": true,
+        "dump_image": true
     },
     {
         "machine": "raspberrypi3-64",
@@ -37,7 +38,8 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
-        "bmap": true
+        "bmap": true,
+        "dump_image": true
     },
     {
         "machine": "nezha-allwinner-d1",
@@ -77,7 +79,8 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
-        "bmap": true
+        "bmap": true,
+        "dump_image": true
     },
     {
         "machine": "qemuarm64",
@@ -94,7 +97,8 @@
         "distro": "torizon",
         "build_dir": "build-torizon",
         "image_format": "wic.bz2",
-        "bmap": true
+        "bmap": true,
+        "dump_image": true
     },
     {
         "machine": "qemux86-64",
