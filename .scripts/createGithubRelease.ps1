@@ -20,6 +20,7 @@ if (
 }
 
 $tag = $env:COMMON_TORIZON_VERSION
+$_ghDryRun = $null -ne $env:GH_DRY_RUN -and $env:GH_DRY_RUN -eq "true"
 
 # get the machines
 $machines = Get-Content -Raw -Path ../.vscode/machines.json | `
@@ -64,11 +65,18 @@ $env:GH_TOKEN = Get-Content ../.key/gh.key
 Set-Location /workdir/torizon/layers/meta-common-torizon
 gh repo set-default commontorizon/meta-common-torizon
 
-# create the release
-gh release create --prerelease --target kirkstone `
-    $tag `
-    -t "Common Torizon $tag" `
-    -n $releaseNotes `
-    /releases/*
+if (
+    -not $_ghDryRun
+) {
+    # create the release
+    gh release create --prerelease --target kirkstone `
+        $tag `
+        -t "Common Torizon $tag" `
+        -n $releaseNotes `
+        /releases/*
+} else {
+    Write-Host -ForegroundColor Yellow `
+        "Skipping GitHub release creation due to GH_DRY_RUN env"
+}
 
 Set-Location -
