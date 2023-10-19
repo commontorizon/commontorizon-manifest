@@ -216,7 +216,8 @@
                     "ACCEPT_FSL_EULA": "1",
                     "MACHINE": "${config:machine}",
                     "IMAGE": "${config:image}",
-                    "DISTRO": "${config:distro}"
+                    "DISTRO": "${config:distro}",
+                    "CMD": ""
                 }
             },
             "args": [
