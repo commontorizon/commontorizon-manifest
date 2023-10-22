@@ -38,6 +38,12 @@
         name="rcv" />
 
     <project 
+        name="yocto-docs"
+        path="layers/yocto-docs" 
+        remote="yocto"
+        revision="9a03e60370bb4f10fa340c1e29cd743e5703653b" />
+
+    <project 
         name="meta-riscv"
         path="layers/meta-riscv" 
         remote="mbc"
