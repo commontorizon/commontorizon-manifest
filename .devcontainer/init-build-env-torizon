@@ -24,4 +24,11 @@ then
     exit 69
 fi
 
-source setup-environment
+# check if the build dir is set otherwise exit
+if [ -z "$BBDIR" ]
+then
+    echo "Please set BBDIR env variable"
+    exit 69
+fi
+
+source setup-environment $BBDIR
