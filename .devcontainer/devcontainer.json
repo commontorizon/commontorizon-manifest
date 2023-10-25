@@ -27,8 +27,8 @@
         "EULA": "1",
         "ACCEPT_FSL_EULA": "1",
         "MACHINE": "raspberrypi4-64",
-        "DISTRO": "torizon-upstream",
-        "IMAGE": "torizon-core-docker"
+        "DISTRO": "torizon",
+        "IMAGE": "common-torizon-core-docker-dev"
     },
     // to attach to the BitBake extension debugger
     "forwardPorts": [
