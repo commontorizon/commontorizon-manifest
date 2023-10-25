@@ -15,7 +15,7 @@ Write-Output @"
     "bitbake.distro": "torizon",
     "bitbake.image": "torizon-core-common-docker-dev",
     "bitbake.buildPath": "build-torizon",
-    "bitbake.setupScriptPath": "init-build-env-torizon",
+    "bitbake.setupScriptPath": "/usr/bin/init-build-env-torizon",
     "bitbake.deepExamine": true,
     "ctags.disable": true,
 }
