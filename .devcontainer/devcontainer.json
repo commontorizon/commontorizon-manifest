@@ -4,17 +4,17 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "microhobby.linuxkerneldev@0.5.5",
+                "microhobby.linuxkerneldev",
                 "microhobby.kgdb-debug",
                 "dpkristensen-garmin.udev-rules",
                 "ms-vscode.cpptools",
                 "ms-python.python",
                 "ms-vscode.powershell",
                 "microhobby.bitbake2",
-                "microhobby.taskrunnercodeplus@0.0.14",
+                "microhobby.taskrunnercodeplus",
                 "microhobby.vscode-tasks-label",
                 "joaompinto.vscode-graphviz",
-                "eamodio.gitlens",
+                "eamodio.gitlens"
             ]
         }
     },
