@@ -32,3 +32,4 @@ then
 fi
 
 source setup-environment $BBDIR
+"$@"
