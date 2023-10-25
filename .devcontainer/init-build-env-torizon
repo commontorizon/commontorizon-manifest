@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# FIXME: this is hard coded and works only inside the container
+cd /workdir/torizon
+
+# check if the dintro is set otherwise exit
+if [ -z "$DISTRO" ]
+then
+    echo "Please set DISTRO env variable"
+    exit 69
+fi
+
+# check if the machine is set otherwise exit
+if [ -z "$MACHINE" ]
+then
+    echo "Please set MACHINE env variable"
+    exit 69
+fi
+
+# check if the image is set otherwise exit
+if [ -z "$IMAGE" ]
+then
+    echo "Please set IMAGE env variable"
+    exit 69
+fi
+
+source setup-environment
