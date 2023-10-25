@@ -55,6 +55,7 @@ RUN groupadd -f docker && groupmod --non-unique --gid 998 docker && adduser user
 
 COPY profile.sh /usr/bin/bitbakes.sh
 COPY profile.sh /usr/bin/startup-tdx.sh
+COPY init-build-env-torizon /usr/bin/init-build-env-torizon
 
 # for the kgdb serial use
 RUN chmod +x /usr/bin/bitbakes.sh && \
@@ -73,6 +74,7 @@ USER usersetup
 
 # configure a dummy git user
 RUN git config --global user.email "common@torizon" && \
-    git config --global user.name "Common Torizon"
+    git config --global user.name "Common Torizon" && \
+    git config --global color.ui true
 
 CMD ["/bin/bash"]
