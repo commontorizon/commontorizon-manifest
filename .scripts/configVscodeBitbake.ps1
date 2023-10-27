@@ -14,6 +14,7 @@ Write-Output @"
     "bitbake.machine": "raspberrypi3-64",
     "bitbake.distro": "torizon",
     "bitbake.image": "torizon-core-common-docker-dev",
+    "bitbake.bitbakePath": "`${workspaceFolder}/openembedded-core/bitbake",
     "bitbake.buildPath": "build-torizon",
     "bitbake.setupScriptPath": "/usr/bin/init-build-env-torizon",
     "bitbake.deepExamine": true,
