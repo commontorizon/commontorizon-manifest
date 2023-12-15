@@ -46,7 +46,7 @@
     <project 
         name="meta-riscv"
         path="layers/meta-riscv" 
-        remote="mbc"
+        remote="rcv"
         revision="0bd22610f8f4f0b17efcfba08b29f58fb3e6d3f0" />
 
     <project 
