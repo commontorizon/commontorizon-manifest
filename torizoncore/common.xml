@@ -41,25 +41,25 @@
         name="yocto-docs"
         path="layers/yocto-docs" 
         remote="yocto"
-        revision="9a03e60370bb4f10fa340c1e29cd743e5703653b" />
+        revision="08fda7a5601393617b1ecfe89229459e14a90b1d" />
 
     <project 
         name="meta-riscv"
         path="layers/meta-riscv" 
         remote="mbc"
-        revision="994188a8b48461f2acdcfee9427e590bcbb6d164" />
+        revision="0bd22610f8f4f0b17efcfba08b29f58fb3e6d3f0" />
 
     <project 
         name="meta-intel" 
         path="layers/meta-intel" 
         remote="yocto"
-        revision="12154d59fd0c5eec7911a66e0b56e70104346823" />
+        revision="f932ebb2544170f43edd22739f44307809bf8cfb" />
 
     <project 
         name="meta-security" 
         path="layers/meta-security" 
         remote="yocto"
-        revision="06c240c3c235fa06fe724e278d53463ac67cc26b" />
+        revision="1a3e42cedbd94ca73be45800d0e902fec35d0f0f" />
 
     <project 
         name="meta-updater" 
@@ -71,25 +71,25 @@
         name="meta-virtualization" 
         path="layers/meta-virtualization" 
         remote="yocto"
-        revision="e60f59f3567b78286ea34337dbae468a5f18f1c6" />
+        revision="67b0ef4256a484851f3556d281ca4caa88374388" />
 
     <project 
         name="meta-toradex-distro.git" 
         path="layers/meta-toradex-distro" 
         remote="tdx"
-        revision="491e249099a36c2eb7f8c0192f100265c1eae0b1" />
+        revision="8363ba48d2c3207a97974aec662b373692310b08" />
 
     <project 
         name="meta-toradex-security" 
         path="layers/meta-toradex-security"
         remote="toradex-torizon"
-        revision="aceab24a2d55e17d07da63ecbaeadabe95f2796a" />
+        revision="a33c09a09391b7b5d8a3a9b13d603e3439a1fe48" />
 
     <project 
         name="meta-common-torizon" 
         path="layers/meta-common-torizon" 
         remote="cmt"
-        revision="35c594197aec5e217d4905994580e478bacfe254">
+        revision="624d38630acf223d0139f4cafbc6f806ec45d845">
 
         <linkfile 
             dest="setup-environment" 
