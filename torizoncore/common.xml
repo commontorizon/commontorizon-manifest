@@ -47,7 +47,7 @@
         name="meta-riscv"
         path="layers/meta-riscv"
         remote="mbc"
-        revision="0bd22610f8f4f0b17efcfba08b29f58fb3e6d3f0" />
+        revision="994188a8b48461f2acdcfee9427e590bcbb6d164" />
 
     <project
         name="meta-intel"
