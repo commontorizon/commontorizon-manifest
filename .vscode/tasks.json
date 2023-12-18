@@ -81,7 +81,7 @@
                 "init",
                 "--no-repo-verify",
                 "-u",
-                "${workspaceFolder}/",
+                "https://github.com/commontorizon/commontorizon-manifest.git",
                 "-b",
                 "kirkstone",
                 "-m",
@@ -399,7 +399,7 @@
             },
             "args": [
                 "zip",
-                "-r", 
+                "-r",
                 "${config:distro}-${config:machine}.tezi.zip",
                 "${workspaceFolder}/../workdir/torizon/build-${config:distro}/deploy/images/${config:machine}"
             ],
@@ -557,7 +557,7 @@
                 "-no-reboot",
                 "-no-acpi",
                 "-bios", "u-boot.bin",
-                "-d", "unimp", 
+                "-d", "unimp",
                 "-semihosting-config enable,target=native",
                 "-serial", "mon:stdio",
                 "-serial", "null",
@@ -587,7 +587,7 @@
             "args": [
                 "qemu-system-x86_64",
                 "-cpu", "IvyBridge",
-                "-machine", "q35",  
+                "-machine", "q35",
                 "-m", "2048",
                 "-smp", "2",
                 //"-netdev", "bridge,br=br0,id=network0",
