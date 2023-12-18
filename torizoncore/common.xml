@@ -7,22 +7,22 @@
     <include name="bsp/pinned-ti.xml"/>
     <include name="bsp/pinned-rpi.xml" />
 
-    <remote 
-        alias="repo" 
-        fetch="https://github.com/uptane" 
+    <remote
+        alias="repo"
+        fetch="https://github.com/uptane"
         name="uptane" />
-    
-    <remote 
-        alias="repo" 
-        fetch="https://github.com/toradex" 
+
+    <remote
+        alias="repo"
+        fetch="https://github.com/toradex"
         name="toradex-torizon" />
-    
-    <remote 
+
+    <remote
         alias="repo"
         fetch="https://github.com/microhobby"
         name="mbc" />
-    
-    <remote 
+
+    <remote
         alias="repo"
         fetch="https://github.com/commontorizon"
         name="cmt" />
@@ -31,68 +31,68 @@
         alias="repo"
         fetch="https://github.com/foundriesio"
         name="fio" />
-    
+
     <remote
         alias="repo"
         fetch="https://github.com/riscv"
         name="rcv" />
 
-    <project 
+    <project
         name="yocto-docs"
-        path="layers/yocto-docs" 
+        path="layers/yocto-docs"
         remote="yocto"
         revision="08fda7a5601393617b1ecfe89229459e14a90b1d" />
 
-    <project 
+    <project
         name="meta-riscv"
-        path="layers/meta-riscv" 
+        path="layers/meta-riscv"
         remote="mbc"
         revision="0bd22610f8f4f0b17efcfba08b29f58fb3e6d3f0" />
 
-    <project 
-        name="meta-intel" 
-        path="layers/meta-intel" 
+    <project
+        name="meta-intel"
+        path="layers/meta-intel"
         remote="yocto"
         revision="f932ebb2544170f43edd22739f44307809bf8cfb" />
 
-    <project 
-        name="meta-security" 
-        path="layers/meta-security" 
+    <project
+        name="meta-security"
+        path="layers/meta-security"
         remote="yocto"
         revision="1a3e42cedbd94ca73be45800d0e902fec35d0f0f" />
 
-    <project 
-        name="meta-updater" 
-        path="layers/meta-updater" 
+    <project
+        name="meta-updater"
+        path="layers/meta-updater"
         remote="uptane"
         revision="9f7fe77932671751f3c7201d164ffbabd0cb2faf" />
 
-    <project 
-        name="meta-virtualization" 
-        path="layers/meta-virtualization" 
+    <project
+        name="meta-virtualization"
+        path="layers/meta-virtualization"
         remote="yocto"
         revision="67b0ef4256a484851f3556d281ca4caa88374388" />
 
-    <project 
-        name="meta-toradex-distro.git" 
-        path="layers/meta-toradex-distro" 
+    <project
+        name="meta-toradex-distro.git"
+        path="layers/meta-toradex-distro"
         remote="tdx"
         revision="8363ba48d2c3207a97974aec662b373692310b08" />
 
-    <project 
-        name="meta-toradex-security" 
+    <project
+        name="meta-toradex-security"
         path="layers/meta-toradex-security"
         remote="toradex-torizon"
         revision="a33c09a09391b7b5d8a3a9b13d603e3439a1fe48" />
 
-    <project 
-        name="meta-common-torizon" 
-        path="layers/meta-common-torizon" 
+    <project
+        name="meta-common-torizon"
+        path="layers/meta-common-torizon"
         remote="cmt"
         revision="624d38630acf223d0139f4cafbc6f806ec45d845">
 
-        <linkfile 
-            dest="setup-environment" 
+        <linkfile
+            dest="setup-environment"
             src="scripts/setup-environment" />
     </project>
 </manifest>
