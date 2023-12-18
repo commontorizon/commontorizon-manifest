@@ -13,6 +13,7 @@
                 "microhobby.bitbake2",
                 "microhobby.taskrunnercodeplus",
                 "microhobby.vscode-tasks-label",
+                "microhobby.vscode-android-repo",
                 "joaompinto.vscode-graphviz",
                 "eamodio.gitlens"
             ]
