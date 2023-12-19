@@ -208,7 +208,7 @@
         {
             "label": "build-container",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -417,7 +417,7 @@
         {
             "label": "- Variable Value",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -445,7 +445,7 @@
         {
             "label": "- Recipe Variable Value",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -473,7 +473,7 @@
         {
             "label": "- List Recipes",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -620,7 +620,7 @@
         {
             "label": "- Generate dependency info",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -649,7 +649,7 @@
         {
             "label": "- Environment variables info",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon/build-torizon-upstream",
@@ -739,7 +739,7 @@
         {
             "label": "bitbake-clean-torizonCore-container",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -806,7 +806,7 @@
         {
             "label": "bitbake-cleansstate-torizonCore-container",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -869,7 +869,7 @@
         {
             "label": "crops-bash-container",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
@@ -1038,7 +1038,7 @@
         {
             "label": "recompile-kernel",
             "detail": "",
-            "command": "${config:bitbake.setupScript}",
+            "command": "startup-tdx.sh",
             "type": "shell",
             "options": {
                 "cwd": "/workdir/torizon",
