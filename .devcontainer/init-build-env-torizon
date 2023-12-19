@@ -1,10 +1,5 @@
 #!/bin/bash
 
-export DISTRO=torizon
-export MACHINE=qemuarm64
-export IMAGE=torizon-core-common-docker-dev
-export BBDIR=build-torizon
-
 # FIXME: this is hard coded and works only inside the container
 cd /workdir/torizon
 

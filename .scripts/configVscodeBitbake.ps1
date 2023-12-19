@@ -12,7 +12,7 @@ Write-Output @"
     "window.title": "Common Torizon Layers",
     "terminal.integrated.defaultProfile.linux": "bash",
     "bitbake.pathToBuildFolder": "`${workspaceFolder}/../build-torizon",
-    "bitbake.pathToEnvScript": "/usr/bin/init-build-env-torizon",
+    "bitbake.pathToEnvScript": "`${workspaceFolder}/.vscode/setup-env",
     "bitbake.pathToBitbakeFolder": "`${workspaceFolder}/openembedded-core/bitbake",
     "ctags.disable": true,
     "python.autoComplete.extraPaths": [
@@ -27,18 +27,25 @@ Write-Output @"
 "@ | Out-File ./.vscode/settings.json
 }
 
-# update the settings.json file
-$yoctoSettings =
-    Get-Content ./.vscode/settings.json | ConvertFrom-Json -Depth 100
+# update the env setup settings
 $settings =
     Get-Content /workspaces/commontorizon-manifest/.vscode/settings.json `
         | ConvertFrom-Json -Depth 100
 
-# update the settings
-$yoctoSettings."bitbake.machine" = $settings.machine
-$yoctoSettings."bitbake.distro" = $settings.distro
-$yoctoSettings."bitbake.image" = $settings.image
-$yoctoSettings."bitbake.buildPath" = $settings.build_dir
+# generate a new setup-env
+Write-Output @"
+#!/bin/bash
 
-# output the settings.json file
-$yoctoSettings | ConvertTo-Json -Depth 100 | Out-File ./.vscode/settings.json
+export DISTRO=$($settings.distro)
+export MACHINE=$($settings.machine)
+export IMAGE=$($settings.image)
+export BBDIR=$($settings.build_dir)
+
+# call the environment setup script
+## TODO: this will work only into the devcontainer
+cd /workdir/torizon
+source setup-environment `$1
+
+"@ | Out-File ./.vscode/setup-env
+
+chmod +x ./.vscode/setup-env
