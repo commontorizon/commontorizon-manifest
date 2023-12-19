@@ -10,7 +10,7 @@
                 "ms-vscode.cpptools",
                 "ms-python.python",
                 "ms-vscode.powershell",
-                "microhobby.bitbake2",
+                "yocto-project.yocto-bitbake",
                 "microhobby.taskrunnercodeplus",
                 "microhobby.vscode-tasks-label",
                 "microhobby.vscode-android-repo",
