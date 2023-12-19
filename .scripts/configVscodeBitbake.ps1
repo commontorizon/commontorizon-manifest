@@ -11,22 +11,26 @@ Write-Output @"
 {
     "window.title": "Common Torizon Layers",
     "terminal.integrated.defaultProfile.linux": "bash",
-    "bitbake.machine": "raspberrypi3-64",
-    "bitbake.distro": "torizon",
-    "bitbake.image": "torizon-core-common-docker-dev",
-    "bitbake.bitbakePath": "`${workspaceFolder}/openembedded-core/bitbake",
-    "bitbake.buildPath": "build-torizon",
-    "bitbake.setupScriptPath": "/usr/bin/init-build-env-torizon",
-    "bitbake.deepExamine": true,
+    "bitbake.pathToBuildFolder": "`${workspaceFolder}/../build-torizon",
+    "bitbake.pathToEnvScript": "/usr/bin/init-build-env-torizon",
+    "bitbake.pathToBitbakeFolder": "`${workspaceFolder}/openembedded-core/bitbake",
     "ctags.disable": true,
+    "python.autoComplete.extraPaths": [
+        "/workdir/torizon/layers/sources/poky/bitbake/lib",
+        "/workdir/torizon/layers/openembedded-core/bitbake/lib"
+    ],
+    "python.analysis.extraPaths": [
+        "/workdir/torizon/layers/sources/poky/bitbake/lib",
+        "/workdir/torizon/layers/openembedded-core/bitbake/lib"
+    ]
 }
 "@ | Out-File ./.vscode/settings.json
 }
 
 # update the settings.json file
-$yoctoSettings = 
+$yoctoSettings =
     Get-Content ./.vscode/settings.json | ConvertFrom-Json -Depth 100
-$settings = 
+$settings =
     Get-Content /workspaces/commontorizon-manifest/.vscode/settings.json `
         | ConvertFrom-Json -Depth 100
 
