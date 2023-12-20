@@ -29,12 +29,8 @@
         "ACCEPT_FSL_EULA": "1",
         "MACHINE": "raspberrypi4-64",
         "DISTRO": "torizon",
-        "IMAGE": "common-torizon-core-docker-dev"
+        "IMAGE": "torizon-core-common-docker-dev"
     },
-    // to attach to the BitBake extension debugger
-    "forwardPorts": [
-        6009
-    ],
     "otherPortsAttributes": {
         "onAutoForward": "ignore"
     },
@@ -44,6 +40,7 @@
     ],
     "remoteUser": "usersetup",
     "initializeCommand": "mkdir -p ${localWorkspaceFolder}/../workdir",
+    "onCreateCommand": "CMD='bitbake --help' /usr/bin/startup-tdx.sh",
     "mounts": [
         "source=${localWorkspaceFolder}/../workdir,target=/workdir,type=bind",
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
