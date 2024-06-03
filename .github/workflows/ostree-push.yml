@@ -1,0 +1,57 @@
+name: OSTree Push
+
+on:
+    workflow_dispatch:
+        inputs:
+            machine:
+                description: "Hardware machine"
+                required: true
+                type: choice
+                options:
+                    - apalis-imx6
+                    - apalis-imx8
+                    - beaglebone-yocto
+                    - beagleplay
+                    - colibri-imx6
+                    - colibri-imx6ull-emmc
+                    - colibri-imx7-emmc
+                    - colibri-imx8x
+                    - genericx86-64
+                    - intel-corei7-64
+                    - nezha-allwinner-d1
+                    - qemuarm64
+                    - qemux86-64
+                    - raspberrypi0-2w-64
+                    - raspberrypi0-wifi
+                    - raspberrypi3-64
+                    - raspberrypi4-64
+                    - verdin-am62
+                    - verdin-imx8mm
+                    - verdin-imx8mp
+
+env:
+    BUCKET_NAME : "commontorizon"
+    AWS_REGION : "eu-central-1"
+    MACHINE : ${{ inputs.machine }}
+
+permissions:
+    id-token: write   # This is required for requesting the JWT
+    contents: read    # This is required for actions/checkout
+
+jobs:
+    OSTreePushToS3:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Git clone the repository
+          uses: actions/checkout@v4
+        - name: Configure aws credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: arn:aws:iam::590183833123:role/CommonTorizonOstreePush
+            role-session-name: CommonTorizonOSTreePushSession
+            aws-region: ${{ env.AWS_REGION }}
+        # Sync OSTree repo for a given machine to S3 bucket
+        - name:  Sync OSTree repo for ${{ env.MACHINE }} to S3
+          # TODO: adapt the command to get the build output when Yocto build CI is set
+          run: |
+            aws s3 sync ./build/deploy/images/${{ env.MACHINE }} s3://${{ env.BUCKET_NAME }}/${{ env.MACHINE }}
